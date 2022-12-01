@@ -1,5 +1,7 @@
 ﻿
-class VeggieDelight
+using FinalProject;
+
+class VeggieDelight : AbstractSandwich
 {
 
     protected int totalRuntime;
@@ -18,7 +20,7 @@ class VeggieDelight
 
 
     public void setEnvironment(SandwichEnvIF c) { }
-    public void start() { }
+    public override void start() { }
 
 }
 

@@ -1,5 +1,7 @@
 ﻿
-class forVegans
+using FinalProject;
+
+class forVegans : AbstractSandwich
 {
     protected int totalRuntime;
 
@@ -14,6 +16,7 @@ class forVegans
         //set the description
         string description = "A delicious sandwich with lettuce, tomato, pickle.";
     }
-    
+    public override void start() { }
+
 }
 

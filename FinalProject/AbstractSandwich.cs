@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject
 {
-    internal class AbstractSandwich
+    internal abstract class AbstractSandwich
     {
         //protected variables
         protected int totalRuntime;
@@ -21,11 +21,7 @@ namespace FinalProject
             SandwichEnvIF env = new SandwichEnv();
         }
 
-        public void start()
-        {
-            //start the sandwich
-            AbstractSandwich sandwich = new AbstractSandwich();
-        }
+        public abstract void start();
 
     }
 }

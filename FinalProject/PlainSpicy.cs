@@ -1,6 +1,8 @@
 ﻿
 //VeggieDelight class
-class PlainSpicy
+using FinalProject;
+
+class PlainSpicy : AbstractSandwich
 {
 
     protected int totalRuntime;
@@ -16,5 +18,6 @@ class PlainSpicy
         //set the description
         string description = "A delicious sandwich with turkey, sriracha, hot peeper, and cheese.";
     }
+    public override void start() { }
 }
 

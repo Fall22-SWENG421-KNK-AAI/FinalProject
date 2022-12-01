@@ -10,21 +10,42 @@ namespace FinalProject
     {
         static void Main(string[] args)
         {
+            string[] sandwichList = {"", "Veggie", "Meat", "Classic", "Spicy", "Vegan"};
+            string input = "1";
+            int numInput = 1;
             //write out Sandwich Shop Display
             Console.WriteLine("Welcome to the Sandwich Shop!");
-            Console.WriteLine("What kind of Sandwhich would you like?");
-
-            //create a new sandwich
-            AbstractSandwich sandwich = new AbstractSandwich();           
-            SandwichEnvIF env = new SandwichEnv();            
-            sandwich.setEnvironment(env);
-            
-            sandwich.start();
+            Console.WriteLine("What kind of Sandwhich would you like? Select a number:");
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine(i + " " + sandwichList[i]);
+            }
 
             //wait for user input
-            Console.ReadLine();
-            
-            
+            while (true)
+            {
+                try
+                {
+                    input = Console.ReadLine();
+                    numInput = Convert.ToInt32(input);
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input! Please try again.");
+                    continue;
+                }
+                break;
+            }
+
+            Console.WriteLine("You selected: " + sandwichList[numInput]);
+
+            //create a new sandwich
+            AbstractSandwich sandwich;
+            SandwichEnvIF env = new SandwichEnv();
+            SandwichCreatorIF sif = new SandwichCreator();
+            sandwich = sif.createSandwich(sandwichList[numInput]);
+            sandwich.setEnvironment(env);
+
         }
     }
 }

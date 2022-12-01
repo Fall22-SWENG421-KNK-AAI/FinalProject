@@ -1,4 +1,6 @@
-﻿class MeatLovers
+﻿using FinalProject;
+
+class MeatLovers : AbstractSandwich
 {
 
     protected int totalRuntime;
@@ -14,5 +16,6 @@
         //set the description
         string description = "A delicious sandwich with roastbeef, turkey, veggie patty, and cheese.";
     }
+    public override void start() { }
 }
 

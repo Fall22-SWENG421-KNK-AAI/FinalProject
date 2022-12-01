@@ -1,4 +1,6 @@
-﻿class TheClassic
+﻿using FinalProject;
+
+class TheClassic : AbstractSandwich
 {
 
     protected int totalRuntime;
@@ -14,5 +16,6 @@
         //set the description
         string description = "A delicious sandwich with roastbeef, turkey, and cheese.";
     }
+    public override void start() { }
 }
 
