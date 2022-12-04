@@ -1,4 +1,4 @@
-﻿interface Bread
+﻿public interface Bread
 {
     //interface methods
     void addBread();

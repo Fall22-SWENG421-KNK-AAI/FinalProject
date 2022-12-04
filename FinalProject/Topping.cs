@@ -1,7 +1,7 @@
 ﻿
 //interface Topping
 
-interface Topping
+public interface Topping
 {
   
 }

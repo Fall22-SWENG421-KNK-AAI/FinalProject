@@ -1,25 +1,28 @@
-﻿class JobState
+﻿public abstract class JobState
 {
-    protected Idle idle;
-    protected Wrapping wrapping;
-    protected Toasting toasting;
-    protected PlacingIngredients placingIngredients;
-    protected OrderCompleted ordercompleted;
-    public readonly int idleEvent = 1;
-    public readonly int placingIngredientsEvent = 2;
-    public readonly int toastingEvent = 3;
-    public readonly int wrappingEvent = 4;
-    public readonly int orderCompletedEvent = 5;
-    public readonly int machineErrorEvent = 6;
+    protected Idle idle = new Idle();
+    protected Wrapping wrapping = new Wrapping();
+    protected Toasting toasting = new Toasting();
+    protected PlacingIngredients placingIngredients = new PlacingIngredients();
+    protected OrderCompleted orderCompleted = new OrderCompleted();
+    public const int idleEvent = 1;
+    public const int placingIngredientsEvent = 2;
+    public const int toastingEvent = 3;
+    public const int wrappingEvent = 4;
+    public const int orderCompletedEvent = 5;
+    public const int machineErrorEvent = 6;
 
 
-    protected void enter() { }
-    protected abstract void nextState(int x);
+    protected void enter() {
+        this.
+    }
+
+    protected abstract JobState nextState(int x);
     public JobState processEvent(int x)
     {
         {
             //process the event
-            nextState(x);
+            this.nextState(x);
             return this;
         }
     }

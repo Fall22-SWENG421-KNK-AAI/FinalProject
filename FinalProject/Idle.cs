@@ -1,7 +1,7 @@
-﻿class Idle : JobState
+﻿public class Idle : JobState
 {
     private JobState parent;
-    public JobState nextState(int x)
+    protected override JobState nextState(int x)
     {
         //set the next state
         switch (x) {

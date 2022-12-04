@@ -1,4 +1,4 @@
-﻿interface Protein
+﻿public interface Protein
 {
     //interface methods
     void addProtein();

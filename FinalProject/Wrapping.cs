@@ -1,8 +1,8 @@
-﻿class Wrapping : JobState
+﻿public class Wrapping : JobState
 {
     private JobState parent;
 
-    JobState nextState(int x)
+    protected override JobState nextState(int x)
     {
         //set the next state
         return orderCompleted;

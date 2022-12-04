@@ -43,9 +43,4 @@ class SandwichCreator : SandwichCreatorIF
         //return the status of the sandwich
         return state.ToString();
     }
-
-    public void setSandwichStatus(string s)
-    {
-        
-    }
 }

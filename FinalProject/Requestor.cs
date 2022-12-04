@@ -1,6 +1,12 @@
 ﻿using FinalProject;
 
-class Requestor
+public class Requestor
 {
-    private AbstractSandwich sandwich;    
+    private AbstractSandwich sandwich;
+    private SandwichCreator creator = new SandwichCreator();
+
+    public AbstractSandwich orderSandwich(string sandwich)
+    {
+        return creator.createSandwich(sandwich);
+    }
 }

@@ -1,8 +1,8 @@
-﻿class Toasting : JobState
+﻿public class Toasting : JobState
 {
     private JobState parent;
    
-    JobState nextState(int x)
+    protected override JobState nextState(int x)
     {
         //set the next state
         return wrapping;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject
 {
-    internal abstract class AbstractSandwich
+    public abstract class AbstractSandwich
     {
         //protected variables
         protected int totalRuntime;
