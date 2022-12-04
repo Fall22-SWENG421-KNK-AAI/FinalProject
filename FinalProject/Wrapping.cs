@@ -5,6 +5,6 @@
     JobState nextState(int x)
     {
         //set the next state
-        return this;
+        return orderCompleted;
     }
 }
