@@ -6,6 +6,6 @@ class OrderCompleted : JobState
     JobState nextState(int x)
     {
         //set the next state
-        return this;
+        return idle;
     }
 }
