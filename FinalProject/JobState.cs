@@ -1,10 +1,16 @@
 ﻿class JobState
 {
     protected Idle idle;
-    //protected InProgress inProgress;
+    protected Wrapping wrapping;
+    protected Toasting toasting;
+    protected PlacingIngredients placingIngredients;
     protected OrderCompleted ordercompleted;
-    public int jobStateEvent = 1;
-    public int machineErrorEvent = 2;
+    public readonly int idleEvent = 1;
+    public readonly int placingIngredientsEvent = 2
+    public readonly int toastingEvent = 3;
+    public readonly int wrappingEvent = 4;
+    public readonly int orderCompletedEvent = 5;
+    public readonly int machineErrorEvent = 6;
 
 
     protected void enter() { }
