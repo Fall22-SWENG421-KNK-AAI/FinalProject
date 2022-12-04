@@ -4,6 +4,13 @@
     public JobState nextState(int x)
     {
         //set the next state
-        return placingIngredients;
+        switch (x) {
+            case placingIngredientsEvent:
+                return placingIngredients;
+                break;
+            default:
+                return idle;
+                break;
+        }    
     }
 }
