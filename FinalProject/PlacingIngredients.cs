@@ -5,7 +5,17 @@
     JobState nextState(int x)
     {
         //set the next state
-        return this;
+        switch (x) {
+            case toastingEvent:
+                return toasting;
+                break;
+            case wrappingEvent:
+                return wrapping;
+                break;
+            default:
+                wrapping;
+                break;
+        }
     }
 
 }
