@@ -2,19 +2,18 @@
 
 class TheClassic : AbstractSandwich
 {
-
-    protected int totalRuntime;
-
     //constructor
     public TheClassic()
     {
 
         //set the name
-        string name = "The Classic";
+        this.name = "The Classic";
         //set the price
-        double price = 5.99;
+        this.price = 5.99;
         //set the description
-        string description = "A delicious sandwich with roastbeef, turkey, and cheese.";
+        this.description = "A delicious sandwich with roastbeef, turkey, and cheese.";
+        this.totalRuntime = 6 * secsInMin;
+        this.needsToasting = true;
     }
     public override void start() { }
 }

@@ -8,13 +8,14 @@ class MeatLovers : AbstractSandwich
     //constructor
     public MeatLovers()
     {
-
         //set the name
-        string name = "Meat Lovers";
+        this.name = "Meat Lovers";
         //set the price
-        double price = 6.99;
+        this.price = 6.99;
         //set the description
-        string description = "A delicious sandwich with roastbeef, turkey, veggie patty, and cheese.";
+        this.description = "A delicious sandwich with roastbeef, turkey, veggie patty, and cheese.";
+        this.totalRuntime = 8 * secsInMin;
+        this.needsToasting = true;
     }
     public override void start() { }
 }

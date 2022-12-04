@@ -3,25 +3,27 @@ using System.ComponentModel.Design.Serialization;
 
 class SandwichCreator : SandwichCreatorIF
 {
-    private JobState state;
-    private ReadWriteLock Lock;
+    private AbstractSandwich sandwich;
+    private ReadWriteLock machineLock = new ReadWriteLock();
 
-    public AbstractSandwich createSandwich(string s)
+	public string getSandwichStatus()
+	{
+		machineLock.readLock();
+		string status = sandwich.ToString();
+		machineLock.done();
+		//return the status of the sandwich
+		return status;
+	}
+
+	public AbstractSandwich createSandwich(string s)
     {
+		machineLock.writeLock();
 		//create a new sandwich with Factory pattern
 		Type type = Type.GetType(s);
 		Object obj = Activator.CreateInstance(type);
-		AbstractSandwich sandwich = (AbstractSandwich)obj;
+		this.sandwich = (AbstractSandwich)obj;
+		machineLock.done();
+		// Return created sandwich
 		return sandwich;
     }
-
-    // This doesn't really make sense.
-    // 
-    // because we don't initialize the state in here.
-    // 
-    /*public string getSandwichStatus()
-    {
-        //return the status of the sandwich
-        return state.ToString();
-    }*/
 }

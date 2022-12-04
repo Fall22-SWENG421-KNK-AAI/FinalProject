@@ -1,9 +1,9 @@
-﻿interface SandwichEnvIF
+﻿public interface SandwichEnvIF
 {
-    void setBread(string type);
-    void placeCheese(int slices);
-    void placeProtein(int pieces, string type);
-    void addToppings(Array[] ToppingIF);
-    void toastSandwich(int sec);
-    
+    public void setBread(string type);
+	public void placeCheese(int slices);
+	public void placeProtein(int pieces, string type);
+	public void addToppings(Array[] ToppingIF);
+	public void toastSandwich(int sec);
+	public string getJobState();
 }

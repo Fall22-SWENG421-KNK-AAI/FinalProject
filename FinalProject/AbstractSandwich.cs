@@ -9,16 +9,28 @@ namespace FinalProject
 {
     public abstract class AbstractSandwich
     {
-        //protected variables
-        protected int totalRuntime;
+        private SandwichEnvIF env;
+
+		//protected variables
+		protected int totalRuntime;
+        protected bool needsToasting;
         protected Topping toppings;
         protected Bread bread;
         protected Protein protein;
+        public string name;
+        public string description;
+        public double price;
+        protected const int secsInMin = 60;
 
-        internal void setEnvironment(SandwichEnvIF c) 
+        public void setEnvironment(SandwichEnvIF env) 
         {
             //set the environment
-            SandwichEnvIF env = new SandwichEnv();
+            this.env = env;
+        }
+
+        protected SandwichEnvIF getSandwichEnv()
+        {
+            return env;
         }
 
         public abstract void start();

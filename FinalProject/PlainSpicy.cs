@@ -4,19 +4,18 @@ using FinalProject;
 
 class PlainSpicy : AbstractSandwich
 {
-
-    protected int totalRuntime;
-
     //constructor
     public PlainSpicy()
     {
 
         //set the name
-        string name = "Plain Spicy";
+        this.name = "Plain Spicy";
         //set the price
-        double price = 5.99;
+        this.price = 5.99;
         //set the description
-        string description = "A delicious sandwich with turkey, sriracha, hot peeper, and cheese.";
+        this.description = "A delicious sandwich with turkey, sriracha, hot peeper, and cheese.";
+        this.totalRuntime = 5 * secsInMin;
+        this.needsToasting = true;
     }
     public override void start() { }
 }

@@ -1,7 +1,7 @@
 ﻿
 using FinalProject;
 
-class VeggieDelight : AbstractSandwich
+public class VeggieDelight : AbstractSandwich
 {
 
     protected int totalRuntime;
@@ -11,16 +11,19 @@ class VeggieDelight : AbstractSandwich
     {
         
         //set the name
-        string name = "Veggie Delight";
+        this.name = "Veggie Delight";
         //set the price
-        double price = 5.99;
+        this.price = 5.99;
         //set the description
-        string description = "A delicious sandwich with lettuce, tomato, pickle, and cheese.";
+        this.description = "A delicious sandwich with lettuce, tomato, pickle, and cheese.";
+        this.totalRuntime = 5 * secsInMin;
+		this.needsToasting = false;
+	}
+
+    public override void start()
+    {
+        
     }
-
-
-    public void setEnvironment(SandwichEnvIF c) { }
-    public override void start() { }
 
 }
 

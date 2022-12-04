@@ -1,7 +1,7 @@
 ﻿using FinalProject;
 
-interface SandwichCreatorIF 
+public interface SandwichCreatorIF 
 {
-    AbstractSandwich createSandwich(string s);
-    //String getSandwichStatus();
+    public AbstractSandwich createSandwich(string s);
+    public String getSandwichStatus();
 }

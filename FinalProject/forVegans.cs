@@ -1,20 +1,20 @@
 ﻿
 using FinalProject;
 
-class forVegans : AbstractSandwich
+class ForVegans : AbstractSandwich
 {
-    protected int totalRuntime;
-
     //constructor
-    public forVegans()
+    public ForVegans()
     {
 
         //set the name
-        string name = "For Vegans";
+        this.name = "For Vegans";
         //set the price
-        double price = 5.99;
+        this.price = 5.99;
         //set the description
-        string description = "A delicious sandwich with lettuce, tomato, pickle.";
+        this.description = "A delicious sandwich with lettuce, tomato, pickle.";
+        this.totalRuntime = 4 * secsInMin;
+        this.needsToasting = false;
     }
     public override void start() { }
 
