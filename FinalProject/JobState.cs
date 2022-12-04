@@ -14,7 +14,7 @@
 
 
     protected void enter() { }
-    protected void nextState(int x) { }
+    protected abstract void nextState(int x);
     public JobState processEvent(int x)
     {
         {
