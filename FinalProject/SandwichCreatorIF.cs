@@ -3,5 +3,5 @@
 interface SandwichCreatorIF 
 {
     AbstractSandwich createSandwich(string s);
-    String getSandwichStatus();
+    //String getSandwichStatus();
 }

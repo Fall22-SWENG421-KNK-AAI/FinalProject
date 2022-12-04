@@ -8,39 +8,20 @@ class SandwichCreator : SandwichCreatorIF
 
     public AbstractSandwich createSandwich(string s)
     {
-        //create a new sandwich
-        AbstractSandwich sandwich;
-        if (s.Equals("Veggie"))
-        {
-            sandwich = new VeggieDelight();
-        }
-        else if (s.Equals("Meat"))
-        {
-            sandwich = new MeatLovers();
-        }
-        else if (s.Equals("Classic"))
-        {
-            sandwich = new TheClassic();
-        }
-        else if (s.Equals("Spicy"))
-        {
-            sandwich = new PlainSpicy();
-        }
-        else if (s.Equals("Vegan"))
-        {
-            sandwich = new forVegans();
-        }
-        else
-        {
-            sandwich = null; // add Null Object based sandwich?
-        }
-        //return the sandwich
-        return sandwich;
+		//create a new sandwich with Factory pattern
+		Type type = Type.GetType(s);
+		Object obj = Activator.CreateInstance(type);
+		AbstractSandwich sandwich = (AbstractSandwich)obj;
+		return sandwich;
     }
 
-    public string getSandwichStatus()
+    // This doesn't really make sense.
+    // 
+    // because we don't initialize the state in here.
+    // 
+    /*public string getSandwichStatus()
     {
         //return the status of the sandwich
         return state.ToString();
-    }
+    }*/
 }
