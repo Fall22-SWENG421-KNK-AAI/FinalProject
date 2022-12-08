@@ -14,8 +14,11 @@ class SandwichCreator : SandwichCreatorIF
 		//return the status of the sandwich
 		return status;
 	}
-
-	public AbstractSandwich createSandwich(string s)
+    public void setSandwichStatus(string s)
+    {
+        return;
+    }
+    public AbstractSandwich createSandwich(string s)
     {
 		machineLock.writeLock();
 		//create a new sandwich with Factory pattern

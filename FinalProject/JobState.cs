@@ -14,7 +14,7 @@
 
 
     protected void enter() {
-        this.
+        //this.
     }
 
     protected abstract JobState nextState(int x);

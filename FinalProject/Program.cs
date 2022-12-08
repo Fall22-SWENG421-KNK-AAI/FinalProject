@@ -10,7 +10,8 @@ namespace FinalProject
     {
         static void Main(string[] args)
         {
-            string[] sandwichList = {"", "Veggie", "Meat", "Classic", "Spicy", "Vegan"};
+            string[] sandwichList = {"", "VeggieDelight", "MeatLovers", "TheClassic", "PlainSpicy", "forVegans"};
+            string[] displayList = { "", "Veggie", "Meat", "Classic", "Spicy", "Vegan" };
             string input = "1";
             int numInput = 1;
             //write out Sandwich Shop Display
@@ -18,7 +19,7 @@ namespace FinalProject
             Console.WriteLine("What kind of Sandwhich would you like? Select a number:");
             for (int i = 1; i <= 5; i++)
             {
-                Console.WriteLine(i + " " + sandwichList[i]);
+                Console.WriteLine(i + " " + displayList[i]);
             }
 
             //wait for user input
@@ -37,7 +38,7 @@ namespace FinalProject
                 break;
             }
 
-            Console.WriteLine("You selected: " + sandwichList[numInput]);
+            Console.WriteLine("You selected: " + displayList[numInput]);
 
             //create a new sandwich
             AbstractSandwich sandwich;
