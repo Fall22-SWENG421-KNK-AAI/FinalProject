@@ -1,28 +1,31 @@
-﻿
-using FinalProject;
+﻿using FinalProject;
 
 public class VeggieDelight : AbstractSandwich
-{
-
-    protected int totalRuntime;
+{  
     
-    //constructor
     public VeggieDelight()
     {
-        
-        //set the name
-        this.name = "Veggie Delight";
-        //set the price
-        this.price = 5.99;
-        //set the description
-        this.description = "A delicious sandwich with lettuce, tomato, pickle, and cheese.";
-        this.totalRuntime = 5 * secsInMin;
-		this.needsToasting = false;
+        name = "Veggie Delight";
+        price = 5.99;
+        description = "A delicious sandwich with lettuce, tomato, pickle, and cheese.";
+        totalRuntime = 5 * secsInMin;
+		needsToasting = false;
 	}
 
     public override void start()
     {
-        
+        getSandwichEnv().beginPlacingIngredients();
+        getSandwichEnv().placeBread(new Wheat());
+        getSandwichEnv().placeCheese(new Provolone(), 1);
+        getSandwichEnv().placeProtein(new VeggiePatty(), 2);
+        Topping[] toppings = new Topping[] {
+            new Lettuce(), new Lettuce(), new Lettuce(),
+            new Tomato(), new Tomato(),
+            new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle() };
+        getSandwichEnv().addToppings(toppings);
+        getSandwichEnv().endPlacingIngredients();
+        getSandwichEnv().toastSandwich(totalRuntime);
+        getSandwichEnv().wrapSandwich();
     }
 
 }

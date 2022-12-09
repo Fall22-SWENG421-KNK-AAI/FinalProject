@@ -1,22 +1,22 @@
 ﻿class NoCheese : Cheese
 {
-    //constructor
+    private string name;
+    private double price;
+
     public NoCheese()
     {
-        //set the name
-        string name = "No Cheese";
-        //set the price
-        double price = 0.00;
+        name = "No Cheese";
+        price = 0.00;
     }
 
     public void addCheese()
     {
-        Console.WriteLine("No Cheese");
+
     }
 
     public void removeCheese()
     {
-        
+        return;
     }
 
 }

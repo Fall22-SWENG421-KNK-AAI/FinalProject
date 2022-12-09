@@ -1,9 +1,13 @@
 ﻿public interface SandwichEnvIF
 {
-    public void setBread(string type);
-	public void placeCheese(int slices);
-	public void placeProtein(int pieces, string type);
-	public void addToppings(Array[] ToppingIF);
+    public void placeBread(Bread type);
+	public void placeCheese(Cheese type, int slices);
+	public void placeProtein(Protein type, int pieces);
+	public void addToppings(Topping[] t);
+	public void chopAndSliceIngredients(int sec);
+	public void beginPlacingIngredients();
+	public void endPlacingIngredients();
 	public void toastSandwich(int sec);
+	public void wrapSandwich();
 	public string getJobState();
 }

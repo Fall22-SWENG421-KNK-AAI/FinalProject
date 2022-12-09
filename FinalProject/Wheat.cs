@@ -1,17 +1,17 @@
-﻿class Wheat : Bread
+﻿public class Wheat : Bread
 {
-    //constructor
+    private string name;
+    private double price;
+
     public Wheat()
     {
-        //set the name
-        string name = "Wheat";
-        //set the price
-        double price = 0.99;
+        name = "Wheat";
+        price = 0.99;
     }
 
     public void addBread()
     {
-        Console.WriteLine("Wheat added");
+        Console.WriteLine("Wheat Bread added");
     }
     
 }

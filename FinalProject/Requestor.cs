@@ -2,11 +2,16 @@
 
 public class Requestor
 {
-    private AbstractSandwich sandwich;
-    private SandwichCreator creator = new SandwichCreator();
+    private Order order;
+    private SandwichCreator creator;
 
-    public AbstractSandwich orderSandwich(string sandwich)
+    public Requestor()
     {
-        return creator.createSandwich(sandwich);
+		creator = new SandwichCreator();
+	}
+
+    public void orderSandwich(string sandwich)
+    {
+         order = creator.createSandwich(sandwich);
     }
 }

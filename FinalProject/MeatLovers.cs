@@ -3,20 +3,27 @@
 class MeatLovers : AbstractSandwich
 {
 
-    protected int totalRuntime;
-
-    //constructor
     public MeatLovers()
     {
-        //set the name
-        this.name = "Meat Lovers";
-        //set the price
-        this.price = 6.99;
-        //set the description
-        this.description = "A delicious sandwich with roastbeef, turkey, veggie patty, and cheese.";
-        this.totalRuntime = 8 * secsInMin;
-        this.needsToasting = true;
+        name = "Meat Lovers";
+        price = 6.99;
+        description = "A delicious sandwich with roastbeef, turkey, veggie patty, and cheese.";
+        totalRuntime = 8 * secsInMin;
+        needsToasting = true;
     }
-    public override void start() { }
+
+    public override void start()
+    {
+        getSandwichEnv().beginPlacingIngredients();
+        getSandwichEnv().placeBread(new Wheat());
+        getSandwichEnv().placeCheese(new Cheddar(), 2);
+        getSandwichEnv().placeProtein(new RoastBeef(), 1);
+        getSandwichEnv().placeProtein(new Turkey(), 1);
+        getSandwichEnv().placeProtein(new VeggiePatty(), 1);
+        getSandwichEnv().chopAndSliceIngredients(30);
+        getSandwichEnv().endPlacingIngredients();
+        getSandwichEnv().toastSandwich(totalRuntime);
+        getSandwichEnv().wrapSandwich();
+    }
 }
 

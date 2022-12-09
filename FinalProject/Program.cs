@@ -29,6 +29,11 @@ namespace FinalProject
                 {
                     input = Console.ReadLine();
                     numInput = Convert.ToInt32(input);
+                    if (numInput > displayList.Length - 1 && numInput < 1)
+                    {
+                        Console.WriteLine("Invalid input! Please try again.");
+                        continue;
+                    }
                 }
                 catch
                 {

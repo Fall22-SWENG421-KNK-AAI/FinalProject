@@ -1,22 +1,18 @@
-﻿class American : Cheese
+﻿class American : Topping, Cheese
 {
-    //constructor
     public American()
     {
-        //set the name
-        string name = "American";
-        //set the price
-        double price = 0.99;
+        name = "American Cheese";
+        price = 0.99;
     }
 
     public void addCheese()
     {
-        Console.WriteLine("American added");
+        addTopping();
     }
 
     public void removeCheese()
     {
-        Console.WriteLine("American removed");
-    }
-
+        removeTopping();
+	}
 }

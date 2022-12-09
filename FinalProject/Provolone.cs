@@ -1,12 +1,12 @@
 ﻿class Provolone : Cheese
 {
-    //constructor
+    private string name;
+    private double price;
+
     public Provolone()
     {
-        //set the name
-        string name = "Provolone";
-        //set the price
-        double price = 0.99;
+        name = "Provolone";
+        price = 0.99;
     }
 
     public void addCheese()

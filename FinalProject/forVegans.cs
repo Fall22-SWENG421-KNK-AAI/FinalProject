@@ -3,20 +3,32 @@ using FinalProject;
 
 class ForVegans : AbstractSandwich
 {
-    //constructor
+
     public ForVegans()
     {
-
-        //set the name
-        this.name = "For Vegans";
-        //set the price
-        this.price = 5.99;
-        //set the description
-        this.description = "A delicious sandwich with lettuce, tomato, pickle.";
-        this.totalRuntime = 4 * secsInMin;
-        this.needsToasting = false;
+        name = "For Vegans";
+        price = 5.99;
+        description = "A delicious sandwich with lettuce, tomato, pickle.";
+        totalRuntime = 4 * secsInMin;
+        needsToasting = false;
     }
-    public override void start() { }
+
+    public override void start()
+    {
+		getSandwichEnv().beginPlacingIngredients();
+		getSandwichEnv().placeBread(new Wheat());
+        getSandwichEnv().placeCheese(new NoCheese(), 0);
+        getSandwichEnv().placeProtein(new NoProtein(), 0);
+        Topping[] toppings = {
+            new Lettuce(), new Lettuce(), new Lettuce(),
+            new Tomato(), new Tomato(),
+            new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle()};
+        getSandwichEnv().chopAndSliceIngredients(30);
+        getSandwichEnv().addToppings(toppings);
+        getSandwichEnv().endPlacingIngredients();
+        getSandwichEnv().toastSandwich(180);
+        getSandwichEnv().wrapSandwich();
+    }
 
 }
 

@@ -2,19 +2,26 @@
 
 class TheClassic : AbstractSandwich
 {
-    //constructor
+
     public TheClassic()
     {
-
-        //set the name
-        this.name = "The Classic";
-        //set the price
-        this.price = 5.99;
-        //set the description
-        this.description = "A delicious sandwich with roastbeef, turkey, and cheese.";
-        this.totalRuntime = 6 * secsInMin;
-        this.needsToasting = true;
+        name = "The Classic";
+        price = 5.99;
+        description = "A delicious sandwich with roastbeef, turkey, and cheese.";
+        totalRuntime = 6 * secsInMin;
+        needsToasting = true;
     }
-    public override void start() { }
+
+    public override void start()
+    {
+        getSandwichEnv().placeBread(new Wheat());
+        getSandwichEnv().placeCheese(new American(), 1);
+        getSandwichEnv().placeProtein(new RoastBeef(), 2);
+        getSandwichEnv().placeProtein(new Turkey(), 1);
+        getSandwichEnv().chopAndSliceIngredients(30);
+        getSandwichEnv().placeIngredients();
+        getSandwichEnv().toastSandwich(180);
+        getSandwichEnv().wrapSandwich();
+    }
 }
 

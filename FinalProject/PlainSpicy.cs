@@ -4,19 +4,30 @@ using FinalProject;
 
 class PlainSpicy : AbstractSandwich
 {
-    //constructor
+
     public PlainSpicy()
     {
-
-        //set the name
-        this.name = "Plain Spicy";
-        //set the price
-        this.price = 5.99;
-        //set the description
-        this.description = "A delicious sandwich with turkey, sriracha, hot peeper, and cheese.";
-        this.totalRuntime = 5 * secsInMin;
-        this.needsToasting = true;
+        name = "Plain Spicy";
+        price = 5.99;
+        description = "A delicious sandwich with turkey, sriracha, hot pepper, and cheese.";
+        totalRuntime = 5 * secsInMin;
+        needsToasting = true;
     }
-    public override void start() { }
+
+    public override void start()
+    {
+		getSandwichEnv().beginPlacingIngredients();
+		getSandwichEnv().placeBread(new Wheat());
+        getSandwichEnv().placeCheese(new Swiss(), 1);
+        getSandwichEnv().placeProtein(new Turkey(), 2);
+        Topping[] toppings = {
+            new Sriracha(), new Sriracha(), new Sriracha(),
+            new HotPepper(), new HotPepper(), new HotPepper() };
+        getSandwichEnv().chopAndSliceIngredients(30);
+        getSandwichEnv().addToppings(toppings);
+        getSandwichEnv().endPlacingIngredients();
+        getSandwichEnv().toastSandwich(180);
+        getSandwichEnv().wrapSandwich();
+    }
 }
 

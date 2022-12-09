@@ -1,4 +1,6 @@
-﻿public abstract class JobState
+﻿using System.Net;
+
+public abstract class JobState
 {
     protected Idle idle = new Idle();
     protected Wrapping wrapping = new Wrapping();
@@ -12,18 +14,22 @@
     public const int orderCompletedEvent = 5;
     public const int machineErrorEvent = 6;
 
-
-    protected void enter() {
-        //this.
-    }
+    protected SandwichEnvIF context;
 
     protected abstract JobState nextState(int x);
     public JobState processEvent(int x)
     {
         {
             //process the event
-            this.nextState(x);
-            return this;
+            return nextState(x);
         }
     }
+
+    // help gotten from refactoring.guru/design-patterns/state/csharp/example
+    public void setContext(SandwichEnvIF env)
+    {
+        context = env;
+    }
+
+    public override string ToString() => GetType().ToString();
 }

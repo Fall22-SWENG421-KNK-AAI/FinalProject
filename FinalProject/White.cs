@@ -1,17 +1,18 @@
-﻿class White : Bread
+﻿public class White : Bread
 {
-    //constructor
+    private string name;
+    private double price;
+    
     public White()
     {
-        //set the name
-        string name = "White";
-        //set the price
-        double price = 0.99;
+        name = "White";
+        price = 0.99;
     }
 
     public void addBread()
     {
-        Console.WriteLine("White added");
+        Console.WriteLine("White Bread added");
     }
+
 
 }

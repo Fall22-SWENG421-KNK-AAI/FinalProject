@@ -1,9 +1,5 @@
 ﻿using FinalProject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace FinalProject
 {
@@ -14,26 +10,56 @@ namespace FinalProject
 		//protected variables
 		protected int totalRuntime;
         protected bool needsToasting;
-        protected Topping toppings;
+        protected Topping[] toppings = new Topping[] { };
         protected Bread bread;
-        protected Protein protein;
+        protected Protein[] protein = new Protein[] { };
+        protected Cheese[] cheese = new Cheese[] { };
         public string name;
         public string description;
         public double price;
         protected const int secsInMin = 60;
 
-        public void setEnvironment(SandwichEnvIF env) 
+		public abstract void start();
+
+		public void setEnvironment(SandwichEnvIF env)
+		{
+			//set the environment
+			this.env = env;
+		}
+
+		public SandwichEnvIF getSandwichEnv()
+		{
+			return env;
+		}
+
+		public void addTopping(Topping t)
+		{
+			toppings.Append(t);
+		}
+
+        public void setBread(Bread bread)
         {
-            //set the environment
-            this.env = env;
+            this.bread = bread;
         }
 
-        protected SandwichEnvIF getSandwichEnv()
+        public void addCheese(Cheese cheese)
         {
-            return env;
+            this.cheese.Append(cheese);
         }
 
-        public abstract void start();
+        public void addProtein(Protein protein)
+        {
+            this.protein.Append(protein);
+        }
 
+        public bool getNeedsToasting()
+        {
+            return needsToasting;
+        }
+
+        public string getSandwichState()
+        {
+            return getSandwichEnv().getJobState();
+        }
     }
 }
