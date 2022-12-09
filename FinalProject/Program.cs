@@ -45,12 +45,12 @@ namespace FinalProject
 
             Console.WriteLine("You selected: " + displayList[numInput]);
 
-            //create a new sandwich
             AbstractSandwich sandwich;
-            SandwichEnvIF env = new SandwichEnv();
-            SandwichCreatorIF sif = new SandwichCreator();
-            sandwich = sif.createSandwich(sandwichList[numInput]);
-            sandwich.setEnvironment(env);
+            SandwichEnvIF env = new SandwichEnv(sandwichList[numInput]);
+            // commented out to remove error
+            //SandwichCreatorIF sif = new SandwichCreator();
+            //sandwich = sif.createSandwich(sandwichList[numInput]);
+            //sandwich.setEnvironment(env);
 
         }
     }

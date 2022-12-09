@@ -1,4 +1,4 @@
-﻿class Sriracha : Sauce, Topping
+﻿class Sriracha : Topping, Sauce
 {
     //constructor
     public Sriracha()

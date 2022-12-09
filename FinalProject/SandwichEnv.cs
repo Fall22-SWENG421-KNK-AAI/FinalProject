@@ -5,12 +5,13 @@ public class SandwichEnv : SandwichEnvIF
     private JobState state;
     private SandwichCreatorIF creator;
     private AbstractSandwich sandwich;
+    private Order sandwichOrder;
 
     public SandwichEnv(string sandwich)
     {
         creator = new SandwichCreator();
         // Uses Factory method to create empty template sandwich type
-        this.sandwich = creator.createSandwich(sandwich);
+        this.sandwichOrder = creator.createSandwich(sandwich);
         changeToState(new Idle());
     }
 
@@ -58,6 +59,11 @@ public class SandwichEnv : SandwichEnvIF
             top.addTopping();
             sandwich.addTopping(top);
 		}
+    }
+    public void chopAndSliceIngredients(int sec)
+    {
+        // add state change?
+        Console.WriteLine("Chopping and Slicing Ingredients for " + sec + " seconds");
     }
 
     public void beginPlacingIngredients()

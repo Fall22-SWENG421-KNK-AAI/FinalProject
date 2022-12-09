@@ -2,7 +2,7 @@
 
 public abstract class JobState
 {
-    protected Idle idle = new Idle();
+    protected Idle idle = new Idle(); // stack overflow detected here once cleaned up
     protected Wrapping wrapping = new Wrapping();
     protected Toasting toasting = new Toasting();
     protected PlacingIngredients placingIngredients = new PlacingIngredients();

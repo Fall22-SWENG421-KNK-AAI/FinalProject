@@ -14,12 +14,14 @@ class TheClassic : AbstractSandwich
 
     public override void start()
     {
+        getSandwichEnv().beginPlacingIngredients();
         getSandwichEnv().placeBread(new Wheat());
         getSandwichEnv().placeCheese(new American(), 1);
         getSandwichEnv().placeProtein(new RoastBeef(), 2);
         getSandwichEnv().placeProtein(new Turkey(), 1);
         getSandwichEnv().chopAndSliceIngredients(30);
-        getSandwichEnv().placeIngredients();
+        getSandwichEnv().addToppings(toppings);
+        getSandwichEnv().endPlacingIngredients();
         getSandwichEnv().toastSandwich(180);
         getSandwichEnv().wrapSandwich();
     }
