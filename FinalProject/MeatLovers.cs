@@ -20,7 +20,6 @@ class MeatLovers : AbstractSandwich
         getSandwichEnv().placeProtein(new RoastBeef(), 1);
         getSandwichEnv().placeProtein(new Turkey(), 1);
         getSandwichEnv().placeProtein(new VeggiePatty(), 1);
-        getSandwichEnv().chopAndSliceIngredients(30);
         getSandwichEnv().endPlacingIngredients();
         getSandwichEnv().toastSandwich(totalRuntime);
         getSandwichEnv().wrapSandwich();

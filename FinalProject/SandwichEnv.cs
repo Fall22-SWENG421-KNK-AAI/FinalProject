@@ -60,11 +60,6 @@ public class SandwichEnv : SandwichEnvIF
             sandwich.addTopping(top);
 		}
     }
-    public void chopAndSliceIngredients(int sec)
-    {
-        // add state change?
-        Console.WriteLine("Chopping and Slicing Ingredients for " + sec + " seconds");
-    }
 
     public void beginPlacingIngredients()
     {

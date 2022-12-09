@@ -23,7 +23,6 @@ class ForVegans : AbstractSandwich
             new Lettuce(), new Lettuce(), new Lettuce(),
             new Tomato(), new Tomato(),
             new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle()};
-        getSandwichEnv().chopAndSliceIngredients(30);
         getSandwichEnv().addToppings(toppings);
         getSandwichEnv().endPlacingIngredients();
         getSandwichEnv().toastSandwich(180);

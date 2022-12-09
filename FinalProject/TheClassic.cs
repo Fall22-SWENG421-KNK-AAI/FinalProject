@@ -19,7 +19,6 @@ class TheClassic : AbstractSandwich
         getSandwichEnv().placeCheese(new American(), 1);
         getSandwichEnv().placeProtein(new RoastBeef(), 2);
         getSandwichEnv().placeProtein(new Turkey(), 1);
-        getSandwichEnv().chopAndSliceIngredients(30);
         getSandwichEnv().addToppings(toppings);
         getSandwichEnv().endPlacingIngredients();
         getSandwichEnv().toastSandwich(180);

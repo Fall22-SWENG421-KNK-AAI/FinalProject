@@ -4,7 +4,6 @@
 	public void placeCheese(Cheese type, int slices);
 	public void placeProtein(Protein type, int pieces);
 	public void addToppings(Topping[] t);
-	public void chopAndSliceIngredients(int sec);
 	public void beginPlacingIngredients();
 	public void endPlacingIngredients();
 	public void toastSandwich(int sec);

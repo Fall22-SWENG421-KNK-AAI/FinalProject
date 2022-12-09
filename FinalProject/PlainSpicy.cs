@@ -23,7 +23,6 @@ class PlainSpicy : AbstractSandwich
         Topping[] toppings = {
             new Sriracha(), new Sriracha(), new Sriracha(),
             new HotPepper(), new HotPepper(), new HotPepper() };
-        getSandwichEnv().chopAndSliceIngredients(30);
         getSandwichEnv().addToppings(toppings);
         getSandwichEnv().endPlacingIngredients();
         getSandwichEnv().toastSandwich(180);
