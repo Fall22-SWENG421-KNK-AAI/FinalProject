@@ -13,6 +13,8 @@ class SandwichMachine : SandwichMachineIF
 
     public SandwichMachine()
     {
+        customerQueue = new Queue<Order>();
+        preparingQueue = new Queue<Order>();
         freeProcessingAreas = new Queue<SandwichEnvIF>();
 
 		for (int i = 0; i < 3; i++)
@@ -118,7 +120,7 @@ class SandwichMachine : SandwichMachineIF
     // This will run in the background constantly.
     public async void PickOrder()
     {
-        if (processingAreaFree())
+        if (processingAreaFree() && customerQueue.Count > 0)
         {
             machineLock.writeLock();
 			Order order = customerQueue.Dequeue();
@@ -127,7 +129,8 @@ class SandwichMachine : SandwichMachineIF
 
 			await foreach (bool orderStarted in beginProcessingOrder(order));
 		}
-        throw new MachineException("No processing areas free.");
+        //throw new MachineException("No processing areas free.");
+        Console.WriteLine("No processing areas free.");
     }
 
     // This will run to start the processing of an order

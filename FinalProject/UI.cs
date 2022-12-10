@@ -30,7 +30,7 @@ namespace FinalProject
 		public Choice DisplayMenu()
 		{
 			Console.WriteLine("What kind of Sandwhich would you like?");
-			for (int i = 0; i <= sandwichList.Length; i++)
+			for (int i = 0; i < sandwichList.Length; i++)
 			{
 				Console.WriteLine(i + 1 + " " + displayList[i]);
 			}
@@ -41,27 +41,29 @@ namespace FinalProject
 				try
 				{
 					input = Console.ReadLine();
-					numInput = Convert.ToInt32(input) - 1;
-					if (numInput > displayList.Length - 1 || numInput < 1)
+					numInput = Convert.ToInt32(input);
+					if (numInput > displayList.Length || numInput < 1)
 					{
-						Console.WriteLine("Invalid input! Please try again.");
+						Console.WriteLine("Invalid input! Please try another number.");
 						continue;
 					}
-					return (Choice)numInput;
+					break;
 				}
 				catch
 				{
-					Console.WriteLine("Invalid input! Please try again.");
+					Console.WriteLine("Invalid input! Please enter the correct input.");
 					continue;
 				}
 			}
-		}
+			numInput--;
+            return (Choice)numInput;
+        }
 
 		public bool AddMoreToOrder()
 		{
 			while (true)
 			{
-				Console.WriteLine($"Would you like to add more sandwiches to your order?");
+				Console.WriteLine($"Would you like to add more sandwiches to your order? (Y|N)");
 				input = Console.ReadLine();
 
 				switch (input)

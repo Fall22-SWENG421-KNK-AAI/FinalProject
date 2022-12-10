@@ -18,6 +18,7 @@ namespace FinalProject
 
 		public static void Main(string[] args)
         {
+			int customerCount = 1;
 			UI ui = new UI();
 			Order order = new Order();
 			SandwichMachineIF machine = new SandwichMachine();
@@ -29,6 +30,7 @@ namespace FinalProject
 
 			while (true)
 			{
+				Console.WriteLine("May we take your order, Customer #" + customerCount + "?");
 				sandwichChoice = ui.DisplayMenu();
 				order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
 
@@ -39,6 +41,7 @@ namespace FinalProject
 				}
 
 				machine.PlaceOrder(order);
+				customerCount++;
 			}
         }
 
