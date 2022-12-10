@@ -1,10 +1,9 @@
 ﻿public class Wrapping : JobState
 {
-    private JobState parent;
-
     protected override JobState nextState(int x)
     {
-        //set the next state
-        return orderCompleted;
+        OrderCompleted o = new OrderCompleted();
+        context.changeTo(o);
+        return o;
     }
 }

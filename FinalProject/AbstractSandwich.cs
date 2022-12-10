@@ -59,7 +59,7 @@ namespace FinalProject
 
         public string getSandwichState()
         {
-            return getSandwichEnv().getJobState();
+            return getSandwichEnv().getJobState().ToString();
         }
     }
 }

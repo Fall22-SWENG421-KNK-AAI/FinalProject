@@ -1,12 +1,5 @@
-﻿using System.Net;
-
-public abstract class JobState
+﻿public abstract class JobState
 {
-    protected Idle idle = new Idle(); // stack overflow detected here once cleaned up
-    protected Wrapping wrapping = new Wrapping();
-    protected Toasting toasting = new Toasting();
-    protected PlacingIngredients placingIngredients = new PlacingIngredients();
-    protected OrderCompleted orderCompleted = new OrderCompleted();
     public const int idleEvent = 1;
     public const int placingIngredientsEvent = 2;
     public const int toastingEvent = 3;
@@ -19,10 +12,7 @@ public abstract class JobState
     protected abstract JobState nextState(int x);
     public JobState processEvent(int x)
     {
-        {
-            //process the event
-            return nextState(x);
-        }
+        return nextState(x);
     }
 
     // help gotten from refactoring.guru/design-patterns/state/csharp/example

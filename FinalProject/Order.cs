@@ -3,21 +3,32 @@
 public class Order
 {
 	private static int orderNumber = 1;
-	private AbstractSandwich sandwich;
+	private List<AbstractSandwich> sandwiches;
 
 	public Order(AbstractSandwich sandwich)
 	{
-		this.sandwich = sandwich;
+		sandwiches = new List<AbstractSandwich>() { sandwich };
 		orderNumber++;
 	}
 
-	public AbstractSandwich getSandwich()
+	public Order()
 	{
-		return sandwich;
+		sandwiches = new List<AbstractSandwich>();
+		orderNumber++;
+	}
+
+	public List<AbstractSandwich> getSandwiches()
+	{
+		return sandwiches;
 	}
 
 	public int getOrderNumber()
 	{
 		return orderNumber;
+	}
+
+	public void AddSandwich(AbstractSandwich s)
+	{
+		sandwiches.Add(s);
 	}
 }

@@ -2,17 +2,19 @@
 {
     protected override JobState nextState(int x)
     {
-        //set the next state
-        switch (x) {
+		Wrapping w = new Wrapping();
+
+		switch (x) {
             case toastingEvent:
-                return toasting;
-                break;
+                Toasting t = new Toasting();
+                context.changeTo(t);
+                return t;
             case wrappingEvent:
-                return wrapping;
-                break;
+				context.changeTo(w);
+				return w;
             default:
-                return wrapping;
-                break;
+                context.changeTo(w);
+                return w;
         }
     }
 }

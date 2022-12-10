@@ -3,20 +3,17 @@
 public class SandwichEnv : SandwichEnvIF
 {
     private JobState state;
-    private SandwichCreatorIF creator;
+    private SandwichMachineIF machine;
     private AbstractSandwich sandwich;
-    private Order sandwichOrder;
 
-    public SandwichEnv(string sandwich)
+    public SandwichEnv(SandwichMachineIF machine)
     {
-        creator = new SandwichCreator();
-        // Uses Factory method to create empty template sandwich type
-        this.sandwichOrder = creator.createSandwich(sandwich);
-        changeToState(new Idle());
+        this.machine = machine;
+        changeTo(new Idle());
     }
 
 	// help gotten from refactoring.guru/design-patterns/state/csharp/example
-	public void changeToState(JobState state)
+	public void changeTo(JobState state)
     {
         this.state = state;
         this.state.setContext(this);
@@ -25,23 +22,20 @@ public class SandwichEnv : SandwichEnvIF
     // Following methods build the Sandwich created.
     public void placeBread(Bread bread)
     {
-		changeToState(state.processEvent(2));
+		changeTo(state.processEvent(2));
         
 		bread.addBread();
-		sandwich.setBread(bread);
+        sandwich.setBread(bread);
     }
 
     public void placeCheese(Cheese type, int slices)
     {
         // To allow notifying customer step is complete.
 		Topping top = (Topping)type;
-        lock (sandwich)
-        {
-			for (int i = 0; i < slices; i++)
-			{
-				top.addTopping();
-				sandwich.addCheese(type);
-			}
+		for (int i = 0; i < slices; i++)
+		{
+			top.addTopping();
+            sandwich.addCheese(type);
 		}
     }
     public void placeProtein(Protein type, int pieces)
@@ -57,13 +51,13 @@ public class SandwichEnv : SandwichEnvIF
 		foreach (Topping top in t)
 		{
             top.addTopping();
-            sandwich.addTopping(top);
+			sandwich.addTopping(top);
 		}
     }
 
     public void beginPlacingIngredients()
     {
-        changeToState(state.processEvent(2));
+        changeTo(state.processEvent(2));
         // perform all actions for sandwich setup
         Console.WriteLine("Placing Ingredients..."); 
     }
@@ -73,11 +67,11 @@ public class SandwichEnv : SandwichEnvIF
 		// Go to next state based on sandwich
 		if (sandwich.getNeedsToasting()) // Toast next.
 		{
-			changeToState(state.processEvent(3));
+			changeTo(state.processEvent(3));
 		}
 		else // don't toast. move straight to wrapping
 		{
-			changeToState(state.processEvent(4));
+			changeTo(state.processEvent(4));
 		}
 	}
 
@@ -85,15 +79,15 @@ public class SandwichEnv : SandwichEnvIF
     {
         Console.WriteLine($"Toasting sandwich ${sec}");
         // Wrap next
-        changeToState(state.processEvent(4));
+        changeTo(state.processEvent(4));
     }   
     public void wrapSandwich() 
     {
 		// Go to order complete
-		changeToState(state.processEvent(5));
+		changeTo(state.processEvent(5));
     }
-    public string getJobState()
+    public JobState getJobState()
     {
-        return state.ToString();
+        return state;
     }
 }

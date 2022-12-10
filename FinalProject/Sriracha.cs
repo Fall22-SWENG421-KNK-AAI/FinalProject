@@ -1,11 +1,9 @@
 ﻿class Sriracha : Topping, Sauce
 {
-    //constructor
+    
     public Sriracha()
-    {
-        //set the name
-        string name = "Sriracha";
-        //set the price
+    {        
+        string name = "Sriracha";        
         double price = 0.99;
     }
 

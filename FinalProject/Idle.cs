@@ -2,14 +2,14 @@
 {
     protected override JobState nextState(int x)
     {
-        //set the next state
         switch (x) {
             case placingIngredientsEvent:
-                return placingIngredients;
-                break;
+                PlacingIngredients pl = new PlacingIngredients();
+                context.changeTo(pl);
+                return pl;
             default:
-                return idle;
-                break;
+                context.changeTo(this);
+                return this;
         }    
     }
 }

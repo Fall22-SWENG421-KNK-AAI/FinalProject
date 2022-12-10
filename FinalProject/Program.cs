@@ -1,57 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FinalProject
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+		public static int millisecInSec = 1000;
+		public static int secInMin = 60;
+		public static int waitTimeMin = 5;
+		public static int waitTime = waitTimeMin * secInMin * millisecInSec;
+
+		public static void Main(string[] args)
         {
-            string[] sandwichList = {"", "VeggieDelight", "MeatLovers", "TheClassic", "PlainSpicy", "forVegans"};
-            string[] displayList = { "", "Veggie", "Meat", "Classic", "Spicy", "Vegan" };
-            string input = "1";
-            int numInput = 1;
-            //write out Sandwich Shop Display
-            Console.WriteLine("Welcome to the Sandwich Shop!");
-            Console.WriteLine("What kind of Sandwhich would you like? Select a number:");
-            for (int i = 1; i <= 5; i++)
-            {
-                Console.WriteLine(i + " " + displayList[i]);
-            }
+			UI ui = new UI();
+			Order order = new Order();
+			SandwichMachineIF machine = new SandwichMachine();
+			Choice sandwichChoice;
 
-            //wait for user input
-            while (true)
-            {
-                try
-                {
-                    input = Console.ReadLine();
-                    numInput = Convert.ToInt32(input);
-                    if (numInput > displayList.Length - 1 && numInput < 1)
-                    {
-                        Console.WriteLine("Invalid input! Please try again.");
-                        continue;
-                    }
-                }
-                catch
-                {
-                    Console.WriteLine("Invalid input! Please try again.");
-                    continue;
-                }
-                break;
-            }
+			Console.WriteLine("Welcome to the Sandwich Shop!");
 
-            Console.WriteLine("You selected: " + displayList[numInput]);
+			tryProcessOrder(machine);
 
-            AbstractSandwich sandwich;
-            SandwichEnvIF env = new SandwichEnv(sandwichList[numInput]);
-            // commented out to remove error
-            //SandwichCreatorIF sif = new SandwichCreator();
-            //sandwich = sif.createSandwich(sandwichList[numInput]);
-            //sandwich.setEnvironment(env);
+			while (true)
+			{
+				sandwichChoice = ui.DisplayMenu();
+				order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
 
+				while (ui.AddMoreToOrder())
+				{
+					sandwichChoice = ui.DisplayMenu();
+					order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
+				}
+
+				machine.PlaceOrder(order);
+			}
         }
-    }
+
+		// Help gotten from https://dotnettutorials.net/lesson/retry-pattern-in-csharp/
+		public static async void tryProcessOrder(SandwichMachineIF machine)
+		{
+			
+			while(true) // Run constantly
+			{
+				try
+				{
+					// This causes to run in background
+					await Task.Run(() => {
+						machine.PickOrder();
+					});
+					break;
+				}
+				catch (SandwichMachine.MachineException e)
+				{
+					await Task.Delay(waitTime);
+				}
+			}
+		}
+	}
 }

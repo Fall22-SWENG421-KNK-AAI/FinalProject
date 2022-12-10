@@ -8,5 +8,6 @@
 	public void endPlacingIngredients();
 	public void toastSandwich(int sec);
 	public void wrapSandwich();
-	public string getJobState();
+	public JobState getJobState();
+	public void changeTo(JobState state);
 }

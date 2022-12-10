@@ -1,12 +1,12 @@
 ﻿class Swiss : Cheese
 {
-    //constructor
+    private string name;
+    private double price;
+
     public Swiss()
     {
-        //set the name
-        string name = "Swiss";
-        //set the price
-        double price = 0.99;
+        name = "Swiss";
+        price = 0.99;
     }
 
     public void addCheese()

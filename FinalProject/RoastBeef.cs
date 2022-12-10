@@ -1,5 +1,4 @@
-﻿
-class RoastBeef : Protein
+﻿class RoastBeef : Protein
 {
     public void addProtein()
     {
