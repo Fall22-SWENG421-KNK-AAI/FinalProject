@@ -4,7 +4,7 @@ public class SandwichEnv : SandwichEnvIF
 {
     private JobState state;
     private SandwichMachineIF machine;
-    private AbstractSandwich sandwich;
+    private AbstractSandwich sandwich; // how to get current sandwich into variable?
 
     public SandwichEnv(SandwichMachineIF machine)
     {

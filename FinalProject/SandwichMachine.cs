@@ -130,7 +130,7 @@ class SandwichMachine : SandwichMachineIF
 			await foreach (bool orderStarted in beginProcessingOrder(order));
 		}
         //throw new MachineException("No processing areas free.");
-        Console.WriteLine("No processing areas free.");
+        //Console.WriteLine("No processing areas free.");
     }
 
     // This will run to start the processing of an order
@@ -155,10 +155,10 @@ class SandwichMachine : SandwichMachineIF
 	{
         return await Task.Run(() =>
         {
-			machineLock.writeLock();
+			//machineLock.writeLock();
 			var env = getFreeProcessingArea();
 			sandwich.setEnvironment(env);
-			machineLock.done();
+			//machineLock.done();
 			sandwich.start();
 			return true;
 		});

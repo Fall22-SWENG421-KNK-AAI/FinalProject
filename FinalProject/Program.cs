@@ -48,7 +48,6 @@ namespace FinalProject
 		// Help gotten from https://dotnettutorials.net/lesson/retry-pattern-in-csharp/
 		public static async void tryProcessOrder(SandwichMachineIF machine)
 		{
-			
 			while(true) // Run constantly
 			{
 				try
@@ -57,7 +56,7 @@ namespace FinalProject
 					await Task.Run(() => {
 						machine.PickOrder();
 					});
-					break;
+					//break;
 				}
 				catch (SandwichMachine.MachineException e)
 				{
