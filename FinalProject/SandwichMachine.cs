@@ -16,8 +16,10 @@ class SandwichMachine : SandwichMachineIF
         customerQueue = new Queue<Order>();
         preparingQueue = new Queue<Order>();
         freeProcessingAreas = new Queue<SandwichEnvIF>();
+        pickupList = new Dictionary<int, Order>();
 
-		for (int i = 0; i < 3; i++)
+
+        for (int i = 0; i < 3; i++)
         {
             freeProcessingAreas.Enqueue(new SandwichEnv(this));
         }

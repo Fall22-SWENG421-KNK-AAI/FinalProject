@@ -12,6 +12,11 @@ public class SandwichEnv : SandwichEnvIF
         changeTo(new Idle());
     }
 
+    public void setSandwich(AbstractSandwich sandwich)
+    {
+        this.sandwich = sandwich;
+    }
+
 	// help gotten from refactoring.guru/design-patterns/state/csharp/example
 	public void changeTo(JobState state)
     {

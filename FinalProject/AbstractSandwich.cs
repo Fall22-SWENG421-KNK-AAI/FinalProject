@@ -23,6 +23,7 @@ namespace FinalProject
 		public void setEnvironment(SandwichEnvIF env)
 		{
 			this.env = env;
+            this.env.setSandwich(this);
 		}
 
 		public SandwichEnvIF getSandwichEnv()
