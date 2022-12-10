@@ -30,8 +30,6 @@ namespace FinalProject
 
 			Console.WriteLine("Welcome to the Sandwich Shop!");
 
-			tryProcessOrder(machine);
-
 			while (true)
 			{
 				Console.WriteLine("May we take your order, Customer #" + customerCount + "?");
