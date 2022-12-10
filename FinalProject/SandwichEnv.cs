@@ -4,12 +4,17 @@ public class SandwichEnv : SandwichEnvIF
 {
     private JobState state;
     private SandwichMachineIF machine;
-    private AbstractSandwich sandwich;
+    private AbstractSandwich sandwich; // how to get current sandwich into variable?
 
     public SandwichEnv(SandwichMachineIF machine)
     {
         this.machine = machine;
         changeTo(new Idle());
+    }
+
+    public void setSandwich(AbstractSandwich sandwich)
+    {
+        this.sandwich = sandwich;
     }
 
 	// help gotten from refactoring.guru/design-patterns/state/csharp/example

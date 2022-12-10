@@ -1,5 +1,8 @@
-﻿public interface SandwichEnvIF
+﻿using FinalProject;
+
+public interface SandwichEnvIF
 {
+	public void setSandwich(AbstractSandwich sandwich);
     public void placeBread(Bread type);
 	public void placeCheese(Cheese type, int slices);
 	public void placeProtein(Protein type, int pieces);
