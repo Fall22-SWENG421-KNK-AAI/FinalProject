@@ -6,7 +6,7 @@ class TheClassic : AbstractSandwich
     public TheClassic()
     {
         name = "The Classic";
-        price = 5.99;
+        price = 6.99;
         description = "A delicious sandwich with roastbeef, turkey, and cheese.";
         totalRuntime = 6 * secsInMin;
         needsToasting = true;

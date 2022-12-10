@@ -4,7 +4,7 @@
     public const int placingIngredientsEvent = 2;
     public const int toastingEvent = 3;
     public const int wrappingEvent = 4;
-    public const int orderCompletedEvent = 5;
+    public const int sandwichCompletedEvent = 5;
     public const int machineErrorEvent = 6;
 
     protected SandwichEnvIF context;

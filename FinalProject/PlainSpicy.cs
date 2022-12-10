@@ -6,7 +6,7 @@ class PlainSpicy : AbstractSandwich
     public PlainSpicy()
     {
         name = "Plain Spicy";
-        price = 5.99;
+        price = 7.99;
         description = "A delicious sandwich with turkey, sriracha, hot pepper, and cheese.";
         totalRuntime = 5 * secsInMin;
         needsToasting = true;

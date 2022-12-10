@@ -1,4 +1,5 @@
 ﻿using FinalProject;
+using Serilog;
 
 public class SandwichEnv : SandwichEnvIF
 {
@@ -58,11 +59,11 @@ public class SandwichEnv : SandwichEnvIF
 		}
     }
 
-    public string beginPlacingIngredients()
+    public void beginPlacingIngredients()
     {
         changeTo(state.processEvent(2));
         // perform all actions for sandwich setup
-        return "Placing Ingredients..."; 
+        Log.Information("Placing Ingredients..."); 
     }
 
     public void endPlacingIngredients()
@@ -78,17 +79,17 @@ public class SandwichEnv : SandwichEnvIF
 		}
 	}
 
-    public string toastSandwich(int sec)
+    public void toastSandwich(int sec)
     {
         // Wrap next
         changeTo(state.processEvent(4));
-        return $"Toasting sandwich {sec}";
+        Log.Information("Toasting sandwich {sec}", sec);
     }   
-    public string wrapSandwich() 
+    public void wrapSandwich() 
     {
 		// Go to order complete
 		changeTo(state.processEvent(5));
-        return "Wrapping sandwich...";
+        Log.Information("Wrapping sandwich...");
     }
     public JobState getJobState()
     {

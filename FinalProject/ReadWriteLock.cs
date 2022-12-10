@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Threading;
-
+using Serilog;
 public class ReadWriteLock
 {
     private int waitingForRead = 0;
@@ -9,7 +9,7 @@ public class ReadWriteLock
     private List<Thread> waitingForWriting = new List<Thread>();
 
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public string readLock()
+	public void readLock()
     {
         try
         {
@@ -23,15 +23,15 @@ public class ReadWriteLock
                 waitingForRead--;
             }
             outstandingReadLocks++;
-            return "Servicing Read Thread";
+            Log.Information("Servicing Read Thread");
         }
         catch (ThreadInterruptedException e)
         {
-            return e.ToString();
+            Log.Error(e.ToString());
         }
     }
 
-    public string writeLock()
+    public void writeLock()
     {
         try
         {
@@ -56,16 +56,16 @@ public class ReadWriteLock
             {
                 waitingForWriting.Remove(thisThread);
             }
-            return "Servicing Write Thread";
+            Log.Information("Servicing Write Thread");
         }
         catch (ThreadInterruptedException e)
         {
-			return e.ToString();
+			Log.Error(e.ToString());
 		}
     }
 
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public string done()
+	public void done()
     {
         string returnMessage = "";
         
@@ -109,6 +109,6 @@ public class ReadWriteLock
             throw new InvalidOperationException("Thread does not have lock");
         }
 
-        return returnMessage;
+        Log.Information(returnMessage);
     }
 }

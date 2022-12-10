@@ -1,10 +1,15 @@
-﻿public abstract class Bread
+﻿using Serilog;
+public abstract class Bread
 {
     protected string name;
     protected double price;
 
-    public string addBread()
+    public void addBread()
     {
-        return $"{name} Bread added";
+        Log.Information("{name} Bread added", name);
+    }
+    public double getPrice()
+    {
+        return price;
     }
 }

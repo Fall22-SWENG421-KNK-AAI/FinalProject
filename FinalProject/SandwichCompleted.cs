@@ -1,5 +1,5 @@
 ﻿
-public class OrderCompleted : JobState
+public class SandwichCompleted : JobState
 {
     protected override JobState nextState(int x)
     {

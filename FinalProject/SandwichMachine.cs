@@ -1,20 +1,21 @@
 ﻿using FinalProject;
 using System.Reflection;
 using System.Runtime.Serialization;
+using Serilog;
 
 class SandwichMachine : SandwichMachineIF
 {
     private AbstractSandwich sandwich;
-    private Queue<Order> customerQueue;
-    private Queue<Order> preparingQueue;
+    private List<Order> customerQueue;
+    private List<Order> preparingQueue;
     private Queue<SandwichEnvIF> freeProcessingAreas;
     private Dictionary<int, Order> pickupList;
     private ReadWriteLock machineLock = new ReadWriteLock();
 
     public SandwichMachine()
     {
-        customerQueue = new Queue<Order>();
-        preparingQueue = new Queue<Order>();
+        customerQueue = new List<Order>();
+        preparingQueue = new List<Order>();
         freeProcessingAreas = new Queue<SandwichEnvIF>();
         pickupList = new Dictionary<int, Order>();
 
@@ -48,43 +49,70 @@ class SandwichMachine : SandwichMachineIF
         return env;
     }
 
-	public string[] getSandwichStatus(Order order)
+	public string getOrderStatus(int orderNum)
 	{
         try
         {
             machineLock.readLock();
-            string status;
-            int orderNum = order.getOrderNumber();
-			Order currentOrder;
+            //string status;
+            //Order currentOrder;
 
-			// Find sandwich
-			if (pickupList.ContainsKey(orderNum)) // Finished.
+            // Find sandwich
+            if (pickupList.ContainsKey(orderNum)) // Finished.
             {
-                currentOrder = pickupList[orderNum];
-			} else if (preparingQueue.Contains(order)) { // Being made.
-				List<Order> orders = createOrderList(order, preparingQueue);
-				int orderIndex = orders.IndexOf(order);
-				currentOrder = orders[orderIndex];
-            } else // Hasn't been started.
+                machineLock.done();
+                return $"Order #{orderNum} Ready";
+                // currentOrder = pickupList[orderNum];
+            } else if (preparingQueue.Count > 0) { // Being made.
+                foreach (Order o in preparingQueue)
+                {
+                    if (orderNum == o.getOrderNumber())
+                    {
+                        machineLock.done();
+                        return $"Preparing order #{orderNum}";
+                    }
+                }
+            } else if (customerQueue.Count > 0)
             {
-				currentOrder = order;
+                foreach (Order o in preparingQueue)
+                {
+                    if (orderNum == o.getOrderNumber())
+                    {
+                        machineLock.done();
+                        return $"Order #{orderNum} not yet started";
+                    }
+                }
+            }
+            machineLock.done();
+            return "Order does not exist.";
+
+            /*
+            List<Order> orders = createOrderList(order, preparingQueue);
+            int orderIndex = orders.IndexOf(order);
+            currentOrder = orders[orderIndex];
+            // currentOrder = order;
             }
 
+            /*
             List<AbstractSandwich> sandwiches = currentOrder.getSandwiches();
-            string[] statuses = new string[] { };
+            string status;
 
 			for (int i = 0; i < sandwiches.Count; i++)
             {
-				status = sandwiches[i].getSandwichEnv().getJobState().ToString();
-                statuses.Append(status);
+				status = sandwiches[i].getSandwichEnv().getJobState();
+                if (!type(status).IsInstanceOfType(SandwichCompleted))
+                {
+                    machineLock.done();
+                    return status.ToString();
+                }
 			}
 			machineLock.done();
-            return statuses;
+            */
         }
         catch (ThreadInterruptedException e)
         {
-            Console.WriteLine(e.ToString());
-            return new string[] {""};
+            Log.Error(e.ToString());
+            return "";
         }
 	}
     
@@ -109,13 +137,14 @@ class SandwichMachine : SandwichMachineIF
 
 	private void AddOrderToQueue(Order order)
 	{
-		customerQueue.Enqueue(order);
+		customerQueue.Add(order);
 	}
 
 	public void PlaceOrder(Order order)
     {
 		machineLock.writeLock();
 		AddOrderToQueue(order);
+
 		machineLock.done();
 	}
 
@@ -125,14 +154,15 @@ class SandwichMachine : SandwichMachineIF
         if (processingAreaFree() && customerQueue.Count > 0)
         {
             machineLock.writeLock();
-			Order order = customerQueue.Dequeue();
-			preparingQueue.Enqueue(order);
+			Order order = customerQueue[0];
+            customerQueue.RemoveAt(0);
+            Log.Information("Picking up order {num} to process.", order.getOrderNumber());
+			preparingQueue.Add(order);
             machineLock.done();
 
 			await foreach (bool orderStarted in beginProcessingOrder(order));
 		}
         //throw new MachineException("No processing areas free.");
-        //Console.WriteLine("No processing areas free.");
     }
 
     // This will run to start the processing of an order
@@ -146,6 +176,7 @@ class SandwichMachine : SandwichMachineIF
 			if (processingAreaFree())
 			{
                 yield return await startProcessingSandwich(s);
+                freeProcessingAreas.Enqueue(s.getSandwichEnv());
 			}
 		}
 
@@ -166,23 +197,31 @@ class SandwichMachine : SandwichMachineIF
 		});
 	}
 
-	private List<Order> createOrderList(Order order, Queue<Order> q)
+    /*
+	private List<Order> createOrderList(Order order, List<Order> q)
     {
 		List<Order> orders = q.ToArray().ToList();
         return orders;
 	}
+    */
 
     public void CompleteOrder(Order order)
     {
-        List<Order> orders = createOrderList(order, preparingQueue);
-        if (orders.Contains(order))
+        if (preparingQueue.Contains(order))
         {
             // Remove the order from the prepartion area.
-			orders.Remove(order);
-            preparingQueue = new Queue<Order>(orders);
+			preparingQueue.Remove(order);
 		}
         // Add to Pickup List
         pickupList.Add(order.getOrderNumber(), order);
+        Log.Information("Completed Order #{num}", order.getOrderNumber());
+    }
+
+    public Order PickupOrder(int orderNum)
+    {
+        Order o = pickupList[orderNum];
+        pickupList.Remove(orderNum);
+        return o;
     }
 
 	[Serializable]

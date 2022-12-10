@@ -7,8 +7,10 @@ namespace FinalProject
 		int numInput;
 		string[] sandwichList;
 		string input;
+        int actionInput;
+		int orderNumInput;
 
-		public UI()
+        public UI()
 		{
 			input = "Y";
 			numInput = 0;
@@ -29,7 +31,7 @@ namespace FinalProject
 
 		public Choice DisplayMenu()
 		{
-			Console.WriteLine("What kind of Sandwhich would you like?");
+            Console.WriteLine("What kind of Sandwhich would you like?");
 			for (int i = 0; i < sandwichList.Length; i++)
 			{
 				Console.WriteLine(i + 1 + " " + displayList[i]);
@@ -78,5 +80,104 @@ namespace FinalProject
 				}
 			}
 		}
-	}
+
+		public int AskActionToTake()
+		{
+            Console.WriteLine("Do you want to (1) make an order or (2) check your sandwich status?\nPlease select a number:");
+            while (true)
+            {
+                try
+                {
+                    input = Console.ReadLine();
+                    actionInput = Convert.ToInt32(input);
+                    if (actionInput > 2 || actionInput < 1)
+                    {
+                        Console.WriteLine("Invalid input! Please try another number.");
+                        continue;
+                    }
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input! Please enter the correct input.");
+                    continue;
+                }
+            }
+			return actionInput;
+        }
+
+		public string getOrderStatus(SandwichMachineIF machine)
+		{
+			string str;
+
+            Console.WriteLine("Enter your order number (Enter b to exit):");
+            while (true)
+            {
+                try
+                {
+                    input = Console.ReadLine();
+                    orderNumInput = Convert.ToInt32(input);
+                    if (orderNumInput < 1)
+                    {
+                        Console.WriteLine("Invalid input! Please try another number.");
+                        continue;
+                    }
+					str = machine.getOrderStatus(orderNumInput);
+
+                    if (str.Equals("Order does not exist."))
+					{
+                        Console.WriteLine($"{str} Please try a different order number.");
+                        continue;
+                    }
+                    return str;
+                }
+                catch
+                {
+                    if (input.Equals("b"))
+					{
+						return "";
+					}
+					Console.WriteLine("Invalid input! Please enter the correct input.");
+                    continue;
+                }
+            }
+        }
+
+		public bool PromptPickup()
+		{
+			Console.WriteLine("Would you like to pickup your order now? (Y|N)");
+			while (true)
+			{
+				input = Console.ReadLine();
+
+				switch (input)
+				{
+					case "Y":
+						return true;
+					case "N":
+						return false;
+					default:
+						Console.WriteLine("Invalid answer! Please try again. (Y|N)");
+						break;
+				}
+			}
+		}
+
+		public Order PickupOrder(bool b, SandwichMachineIF machine)
+		{
+            Order o = machine.PickupOrder(orderNumInput);
+            return o;
+		}
+		
+		public void PrintReceipt(Order o)
+		{
+			double total = 0.0;
+			foreach (AbstractSandwich s in o.getSandwiches())
+			{
+				Console.WriteLine(s);
+				total += s.getPrice();
+			}
+			Console.WriteLine($"\tTotal Price ${total}");
+		}
+    }
 }

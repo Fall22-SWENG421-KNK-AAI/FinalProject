@@ -2,8 +2,8 @@
 {
     protected override JobState nextState(int x)
     {
-        OrderCompleted o = new OrderCompleted();
-        context.changeTo(o);
-        return o;
+        SandwichCompleted s = new SandwichCompleted();
+        context.changeTo(s);
+        return s;
     }
 }

@@ -7,7 +7,7 @@ class ForVegans : AbstractSandwich
     public ForVegans()
     {
         name = "For Vegans";
-        price = 5.99;
+        price = 4.99;
         description = "A delicious sandwich with lettuce, tomato, pickle.";
         totalRuntime = 4 * secsInMin;
         needsToasting = false;

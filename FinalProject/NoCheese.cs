@@ -1,6 +1,6 @@
 ﻿class NoCheese : Cheese
 {
-    public override string addCheese() { return ""; }
+    public override void addCheese() {  }
 
-	public override string removeCheese() { return ""; }
+	public override void removeCheese() {  }
 }

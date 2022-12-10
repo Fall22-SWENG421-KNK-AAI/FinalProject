@@ -1,15 +1,21 @@
-﻿public abstract class Cheese
+﻿using Serilog;
+public abstract class Cheese
 {
     protected string name;
     protected double price;
 
-    public virtual string addCheese()
+    public virtual void addCheese()
     {
-        return $"{name} added";
+        Log.Information("{name} added", name);
     }
 
-    public virtual string removeCheese()
+    public virtual void removeCheese()
     {
-        return $"{name} removed";
+        Log.Information("{name} removed", name);
+    }
+
+    public double getPrice()
+    {
+        return price;
     }
 }

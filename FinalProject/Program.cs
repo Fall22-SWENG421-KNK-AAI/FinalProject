@@ -6,74 +6,82 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace FinalProject
 {
     public class Program
     {
 		public static int millisecInSec = 1000;
-		public static int secInMin = 60;
-		public static int waitTimeMin = 5;
-		public static int waitTime = waitTimeMin * secInMin * millisecInSec;
-		static StreamWriter w = new StreamWriter("application-log.txt"); //File.AppendText("application-log.txt");
+		public static int sec = 3;
+		public static int waitTime = sec * millisecInSec;
 
 		public static void Main(string[] args)
         {
 			int customerCount = 1;
-			UI ui = new UI();
-			Order order = new Order();
+			string orderStatus;
+            UI ui = new UI();
 			SandwichMachineIF machine = new SandwichMachine();
 			Choice sandwichChoice;
-			Log("Test1", w);
-			Log("Test2", w);
-			w.Close();
+			// Creates a logging object to be used in application
+			Log.Logger = new LoggerConfiguration()
+				.MinimumLevel.Information()
+				.WriteTo.File("app-log.txt",
+					outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+					rollingInterval: RollingInterval.Day)
+				.CreateLogger();
 
 			Console.WriteLine("Welcome to the Sandwich Shop!");
 
+            tryProcessOrder(machine);
 			while (true)
 			{
-				Console.WriteLine("May we take your order, Customer #" + customerCount + "?");
-				sandwichChoice = ui.DisplayMenu();
-				order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
-
-				while (ui.AddMoreToOrder())
+				int action = ui.AskActionToTake();
+                if (action == 1)
 				{
-					sandwichChoice = ui.DisplayMenu();
-					order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
-				}
+                    Order order = new Order();
 
-				machine.PlaceOrder(order);
-				customerCount++;
+                    Console.WriteLine("May we take your order, Customer #" + customerCount + "?");
+                    sandwichChoice = ui.DisplayMenu();
+                    order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
+
+                    while (ui.AddMoreToOrder())
+                    {
+                        sandwichChoice = ui.DisplayMenu();
+                        order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
+                    }
+
+                    machine.PlaceOrder(order);
+                    customerCount++;
+                }
+				else if (action == 2)
+				{
+					orderStatus = ui.getOrderStatus(machine);
+					if (!orderStatus.Equals("")) // valid order
+					{
+						Console.WriteLine(orderStatus);
+						bool wantPickup = ui.PromptPickup();
+						if (wantPickup)
+						{
+							Order readyOrder = ui.PickupOrder(wantPickup, machine);
+							ui.PrintReceipt(readyOrder);
+						}
+                    }
+				}
 			}
         }
 
-		public static void Log(string logMessage, TextWriter w)
-		{
-			Console.WriteLine("Test Message");
-			w.Write("\r\nLog Entry : ");
-			w.WriteLine($"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}");
-			w.WriteLine("  :");
-			w.WriteLine($"  :{logMessage}");
-			w.WriteLine ("-------------------------------");
-		}
-
 		// Help gotten from https://dotnettutorials.net/lesson/retry-pattern-in-csharp/
-		public static async void tryProcessOrder(SandwichMachineIF machine)
+		// and https://stackoverflow.com/questions/30462079/run-async-method-regularly-with-specified-interval
+		public static async void tryProcessOrder(SandwichMachineIF machine, CancellationToken c = default)
 		{
-			while(true) // Run constantly
+			// This causes to run in background
+			while (true)
 			{
-				try
-				{
-					// This causes to run in background
-					await Task.Run(() => {
-						machine.PickOrder();
-					});
-					//break;
-				}
-				catch (SandwichMachine.MachineException e)
-				{
-					await Task.Delay(waitTime);
-				}
+				await Task.Run(() => {
+					machine.PickOrder();
+				});
+				await Task.Delay(waitTime, c);
 			}
 		}
 	}

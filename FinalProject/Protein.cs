@@ -1,15 +1,21 @@
-﻿public abstract class Protein
+﻿using Serilog;
+public abstract class Protein
 {    
     protected string name;
     protected double price;
 
-    public virtual string addProtein()
+    public virtual void addProtein()
     {
-        return $"{name} added";
+        Log.Information("{name} added", name);
     }
 
-    public virtual string removeProtein()
+    public virtual void removeProtein()
     {
-        return $"{name} removed";
+        Log.Information("{name} removed", name);
+    }
+
+    public double getPrice()
+    {
+        return price;
     }
 }

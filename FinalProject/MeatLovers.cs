@@ -6,7 +6,7 @@ class MeatLovers : AbstractSandwich
     public MeatLovers()
     {
         name = "Meat Lovers";
-        price = 6.99;
+        price = 8.99;
         description = "A delicious sandwich with roastbeef, turkey, veggie patty, and cheese.";
         totalRuntime = 8 * secsInMin;
         needsToasting = true;

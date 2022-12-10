@@ -10,14 +10,14 @@ public class Order
 	{
 		sandwiches = new List<AbstractSandwich>() { sandwich };
 		thisOrderNumber = orderNumber;
-		orderNumber++;
+		Order.orderNumber++;
 	}
 
 	public Order()
 	{
 		sandwiches = new List<AbstractSandwich>();
         thisOrderNumber = orderNumber;
-		orderNumber++;
+		Order.orderNumber++;
     }
 
 	public List<AbstractSandwich> getSandwiches()

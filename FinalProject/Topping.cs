@@ -1,15 +1,21 @@
-﻿public abstract class Topping
+﻿using Serilog;
+public abstract class Topping
 {
 	protected string name;
 	protected double price;
 
-	public string addTopping()
+	public void addTopping()
 	{
-		return $"{name} added";
+		Log.Information("{name} added", name);
 	}
 
-	public string removeTopping()
+	public void removeTopping()
 	{
-		return $"{name} removed";
+		Log.Information("{name} removed", name);
+	}
+
+	public double getPrice()
+	{
+		return price;
 	}
 }
