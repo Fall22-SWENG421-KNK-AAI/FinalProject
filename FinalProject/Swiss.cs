@@ -1,4 +1,4 @@
-﻿class Swiss : Cheese
+﻿class Swiss : Topping, Cheese
 {
     private string name;
     private double price;

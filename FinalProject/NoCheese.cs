@@ -1,4 +1,4 @@
-﻿class NoCheese : Cheese
+﻿class NoCheese : Topping, Cheese
 {
     private string name;
     private double price;

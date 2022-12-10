@@ -1,4 +1,4 @@
-﻿class Provolone : Cheese
+﻿class Provolone : Topping, Cheese
 {
     private string name;
     private double price;
