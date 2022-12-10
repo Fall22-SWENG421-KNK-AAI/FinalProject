@@ -1,5 +1,4 @@
-﻿
-class Turkey : Protein
+﻿class Turkey : Protein
 {
     public void addProtein()
     {

@@ -7,7 +7,6 @@ namespace FinalProject
     {
         private SandwichEnvIF env;
 
-		//protected variables
 		protected int totalRuntime;
         protected bool needsToasting;
         protected Topping[] toppings = new Topping[] { };
@@ -23,7 +22,6 @@ namespace FinalProject
 
 		public void setEnvironment(SandwichEnvIF env)
 		{
-			//set the environment
 			this.env = env;
 		}
 

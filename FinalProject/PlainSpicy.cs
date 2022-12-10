@@ -1,6 +1,4 @@
-﻿
-//VeggieDelight class
-using FinalProject;
+﻿using FinalProject;
 
 class PlainSpicy : AbstractSandwich
 {

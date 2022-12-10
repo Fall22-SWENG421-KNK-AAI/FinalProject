@@ -1,6 +1,5 @@
 ﻿class Mayonnaise : Topping, Sauce
 {
-    //constructor
     public Mayonnaise()
     {
         name = "Mayonnaise";
