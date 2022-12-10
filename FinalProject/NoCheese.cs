@@ -1,22 +1,6 @@
-﻿class NoCheese : Topping, Cheese
+﻿class NoCheese : Cheese
 {
-    private string name;
-    private double price;
+    public override string addCheese() { return ""; }
 
-    public NoCheese()
-    {
-        name = "No Cheese";
-        price = 0.00;
-    }
-
-    public void addCheese()
-    {
-
-    }
-
-    public void removeCheese()
-    {
-        return;
-    }
-
+	public override string removeCheese() { return ""; }
 }

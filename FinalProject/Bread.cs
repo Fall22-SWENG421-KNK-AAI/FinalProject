@@ -1,4 +1,10 @@
-﻿public interface Bread
+﻿public abstract class Bread
 {
-    public void addBread();
+    protected string name;
+    protected double price;
+
+    public string addBread()
+    {
+        return $"{name} Bread added";
+    }
 }

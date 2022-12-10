@@ -1,13 +1,8 @@
 ﻿class Turkey : Protein
 {
-    public void addProtein()
+    public Turkey()
     {
-        Console.WriteLine("Turkey added");
+        name = "Turkey";
+        price = 1.99;
     }
-
-    public void removeProtein()
-    {
-        Console.WriteLine("Turkey removed");
-    }
-
 }

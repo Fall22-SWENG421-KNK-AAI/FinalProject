@@ -83,8 +83,8 @@ class SandwichMachine : SandwichMachineIF
         }
         catch (ThreadInterruptedException e)
         {
-            Console.WriteLine(e);
-            return new string[] { };
+            Console.WriteLine(e.ToString());
+            return new string[] {""};
         }
 	}
     

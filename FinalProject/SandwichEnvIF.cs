@@ -7,10 +7,10 @@ public interface SandwichEnvIF
 	public void placeCheese(Cheese type, int slices);
 	public void placeProtein(Protein type, int pieces);
 	public void addToppings(Topping[] t);
-	public void beginPlacingIngredients();
+	public string beginPlacingIngredients();
 	public void endPlacingIngredients();
-	public void toastSandwich(int sec);
-	public void wrapSandwich();
+	public string toastSandwich(int sec);
+	public string wrapSandwich();
 	public JobState getJobState();
 	public void changeTo(JobState state);
 }

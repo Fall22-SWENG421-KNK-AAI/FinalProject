@@ -1,5 +1,15 @@
-﻿public interface Cheese
+﻿public abstract class Cheese
 {
-    void addCheese();
-    void removeCheese();
+    protected string name;
+    protected double price;
+
+    public virtual string addCheese()
+    {
+        return $"{name} added";
+    }
+
+    public virtual string removeCheese()
+    {
+        return $"{name} removed";
+    }
 }

@@ -15,6 +15,7 @@ namespace FinalProject
 		public static int secInMin = 60;
 		public static int waitTimeMin = 5;
 		public static int waitTime = waitTimeMin * secInMin * millisecInSec;
+		static StreamWriter w = new StreamWriter("application-log.txt"); //File.AppendText("application-log.txt");
 
 		public static void Main(string[] args)
         {
@@ -23,6 +24,9 @@ namespace FinalProject
 			Order order = new Order();
 			SandwichMachineIF machine = new SandwichMachine();
 			Choice sandwichChoice;
+			Log("Test1", w);
+			Log("Test2", w);
+			w.Close();
 
 			Console.WriteLine("Welcome to the Sandwich Shop!");
 
@@ -44,6 +48,16 @@ namespace FinalProject
 				customerCount++;
 			}
         }
+
+		public static void Log(string logMessage, TextWriter w)
+		{
+			Console.WriteLine("Test Message");
+			w.Write("\r\nLog Entry : ");
+			w.WriteLine($"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}");
+			w.WriteLine("  :");
+			w.WriteLine($"  :{logMessage}");
+			w.WriteLine ("-------------------------------");
+		}
 
 		// Help gotten from https://dotnettutorials.net/lesson/retry-pattern-in-csharp/
 		public static async void tryProcessOrder(SandwichMachineIF machine)

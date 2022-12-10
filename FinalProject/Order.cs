@@ -3,19 +3,22 @@
 public class Order
 {
 	private static int orderNumber = 1;
+	private int thisOrderNumber;
 	private List<AbstractSandwich> sandwiches;
 
 	public Order(AbstractSandwich sandwich)
 	{
 		sandwiches = new List<AbstractSandwich>() { sandwich };
+		thisOrderNumber = orderNumber;
 		orderNumber++;
 	}
 
 	public Order()
 	{
 		sandwiches = new List<AbstractSandwich>();
+        thisOrderNumber = orderNumber;
 		orderNumber++;
-	}
+    }
 
 	public List<AbstractSandwich> getSandwiches()
 	{
@@ -24,7 +27,7 @@ public class Order
 
 	public int getOrderNumber()
 	{
-		return orderNumber;
+		return thisOrderNumber;
 	}
 
 	public void AddSandwich(AbstractSandwich s)

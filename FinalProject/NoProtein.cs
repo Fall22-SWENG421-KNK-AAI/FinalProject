@@ -1,6 +1,6 @@
 ﻿public class NoProtein : Protein
 {
-	public void addProtein() { }
+	public override string addProtein() { return ""; }
 
-	public void removeProtein() { }
+	public override string removeProtein() { return ""; }
 }

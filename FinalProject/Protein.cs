@@ -1,5 +1,15 @@
-﻿public interface Protein
+﻿public abstract class Protein
 {    
-    void addProtein();
-    void removeProtein();
+    protected string name;
+    protected double price;
+
+    public virtual string addProtein()
+    {
+        return $"{name} added";
+    }
+
+    public virtual string removeProtein()
+    {
+        return $"{name} removed";
+    }
 }

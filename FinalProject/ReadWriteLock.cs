@@ -9,7 +9,7 @@ public class ReadWriteLock
     private List<Thread> waitingForWriting = new List<Thread>();
 
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public void readLock()
+	public string readLock()
     {
         try
         {
@@ -23,13 +23,15 @@ public class ReadWriteLock
                 waitingForRead--;
             }
             outstandingReadLocks++;
+            return "Servicing Read Thread";
         }
         catch (ThreadInterruptedException e)
         {
-            Console.WriteLine(e.ToString());
+            return e.ToString();
         }
     }
-    public void writeLock()
+
+    public string writeLock()
     {
         try
         {
@@ -39,7 +41,6 @@ public class ReadWriteLock
                 if (writerLockedThread == null && outstandingReadLocks == 0)
                 {
                     writerLockedThread = Thread.CurrentThread;
-                    return;
                 }
                 thisThread = Thread.CurrentThread;
                 waitingForWriting.Add(thisThread);
@@ -55,16 +56,19 @@ public class ReadWriteLock
             {
                 waitingForWriting.Remove(thisThread);
             }
+            return "Servicing Write Thread";
         }
         catch (ThreadInterruptedException e)
         {
-			Console.WriteLine(e.ToString());
+			return e.ToString();
 		}
     }
 
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public void done()
+	public string done()
     {
+        string returnMessage = "";
+        
         if(outstandingReadLocks > 0)
         {
             outstandingReadLocks--;
@@ -75,6 +79,7 @@ public class ReadWriteLock
                 {
                     Monitor.PulseAll(writerLockedThread);
                 }
+                returnMessage = "Servicing next Writer";
             }
         }
         else if (Thread.CurrentThread == writerLockedThread)
@@ -86,6 +91,7 @@ public class ReadWriteLock
                 {
                     Monitor.PulseAll(writerLockedThread);
                 }
+                returnMessage = "Servicing next Writer";
             }
             else
             {
@@ -93,12 +99,16 @@ public class ReadWriteLock
                 if (waitingForRead > 0)
                 {
                     Monitor.PulseAll(this);
+                    returnMessage = "Notifying Read threads";
                 }
+                returnMessage = "No threads to service";
             }
         }
         else
         {
             throw new InvalidOperationException("Thread does not have lock");
         }
+
+        return returnMessage;
     }
 }

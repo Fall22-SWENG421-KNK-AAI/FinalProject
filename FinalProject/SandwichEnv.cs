@@ -35,11 +35,9 @@ public class SandwichEnv : SandwichEnvIF
 
     public void placeCheese(Cheese type, int slices)
     {
-        // To allow notifying customer step is complete.
-		Topping top = (Topping)type;
 		for (int i = 0; i < slices; i++)
 		{
-			top.addTopping();
+			type.addCheese();
             sandwich.addCheese(type);
 		}
     }
@@ -60,11 +58,11 @@ public class SandwichEnv : SandwichEnvIF
 		}
     }
 
-    public void beginPlacingIngredients()
+    public string beginPlacingIngredients()
     {
         changeTo(state.processEvent(2));
         // perform all actions for sandwich setup
-        Console.WriteLine("Placing Ingredients..."); 
+        return "Placing Ingredients..."; 
     }
 
     public void endPlacingIngredients()
@@ -80,16 +78,17 @@ public class SandwichEnv : SandwichEnvIF
 		}
 	}
 
-    public void toastSandwich(int sec)
+    public string toastSandwich(int sec)
     {
-        Console.WriteLine($"Toasting sandwich ${sec}");
         // Wrap next
         changeTo(state.processEvent(4));
+        return $"Toasting sandwich {sec}";
     }   
-    public void wrapSandwich() 
+    public string wrapSandwich() 
     {
 		// Go to order complete
 		changeTo(state.processEvent(5));
+        return "Wrapping sandwich...";
     }
     public JobState getJobState()
     {

@@ -1,4 +1,4 @@
-﻿class Mayonnaise : Topping, Sauce
+﻿class Mayonnaise : Topping
 {
     public Mayonnaise()
     {

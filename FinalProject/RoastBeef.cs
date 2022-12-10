@@ -1,13 +1,8 @@
 ﻿class RoastBeef : Protein
 {
-    public void addProtein()
+    public RoastBeef()
     {
-        Console.WriteLine("Roast Beef added");
+        name = "Roast Beef";
+        price = 2.99;
     }
-
-    public void removeProtein()
-    {
-        Console.WriteLine("Roast Beef removed");
-    }
-
 }

@@ -1,13 +1,9 @@
 ﻿class VeggiePatty : Protein
 {
-    public void addProtein()
+    public VeggiePatty()
     {
-        Console.WriteLine("Veggie Patty added");
-    }
-
-    public void removeProtein()
-    {
-        Console.WriteLine("Veggie Patty removed");
+        name = "Veggie Patty";
+        price = 0.99;
     }
 
 }

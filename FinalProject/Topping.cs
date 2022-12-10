@@ -1,16 +1,15 @@
 ﻿public abstract class Topping
 {
 	protected string name;
-	protected int amount;
 	protected double price;
 
-	public void addTopping()
+	public string addTopping()
 	{
-		Console.WriteLine($"{name} added");
+		return $"{name} added";
 	}
 
-	public void removeTopping()
+	public string removeTopping()
 	{
-		Console.WriteLine($"{name} removed");
+		return $"{name} removed";
 	}
 }
