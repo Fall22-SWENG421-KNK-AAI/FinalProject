@@ -30,7 +30,7 @@ namespace FinalProject
 		public Choice DisplayMenu()
 		{
 			Console.WriteLine("What kind of Sandwhich would you like?");
-			for (int i = 0; i <= sandwichList.Length; i++)
+			for (int i = 0; i < sandwichList.Length; i++)
 			{
 				Console.WriteLine(i + 1 + " " + displayList[i]);
 			}
@@ -42,7 +42,7 @@ namespace FinalProject
 				{
 					input = Console.ReadLine();
 					numInput = Convert.ToInt32(input) - 1;
-					if (numInput > displayList.Length - 1 || numInput < 1)
+					if (numInput > displayList.Length - 1 || numInput < 0)
 					{
 						Console.WriteLine("Invalid input! Please try again.");
 						continue;

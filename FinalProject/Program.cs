@@ -25,8 +25,6 @@ namespace FinalProject
 
 			Console.WriteLine("Welcome to the Sandwich Shop!");
 
-			tryProcessOrder(machine);
-
 			while (true)
 			{
 				sandwichChoice = ui.DisplayMenu();
@@ -39,6 +37,8 @@ namespace FinalProject
 				}
 
 				machine.PlaceOrder(order);
+
+				tryProcessOrder(machine);
 			}
         }
 

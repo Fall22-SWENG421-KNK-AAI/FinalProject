@@ -13,6 +13,10 @@ class SandwichMachine : SandwichMachineIF
 
     public SandwichMachine()
     {
+        customerQueue = new Queue<Order>();
+        preparingQueue = new Queue<Order>();
+        pickupList = new Dictionary<int, Order>();
+
         freeProcessingAreas = new Queue<SandwichEnvIF>();
 
 		for (int i = 0; i < 3; i++)
