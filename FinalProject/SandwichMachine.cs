@@ -194,24 +194,4 @@ class SandwichMachine : SandwichMachineIF
         pickupList.Remove(orderNum);
         return o;
     }
-
-	[Serializable]
-	public class MachineException : Exception
-	{
-		public MachineException()
-		{
-		}
-
-		public MachineException(string? message) : base(message)
-		{
-		}
-
-		public MachineException(string? message, Exception? innerException) : base(message, innerException)
-		{
-		}
-
-		protected MachineException(SerializationInfo info, StreamingContext context) : base(info, context)
-		{
-		}
-	}
 }

@@ -10,12 +10,10 @@ namespace FinalProject
 {
 	public class UI
 	{
-		string[] displayList;
-		int numInput;
-		string[] sandwichList;
-		string input;
-        int actionInput;
-		int orderNumInput;
+		private string[] displayList;
+		private string[] sandwichList;
+		private string input;
+		private int numInput;
 
         public UI()
 		{
@@ -96,8 +94,8 @@ namespace FinalProject
                 try
                 {
                     input = Console.ReadLine();
-                    actionInput = Convert.ToInt32(input);
-                    if (actionInput > 2 || actionInput < 1)
+                    numInput = Convert.ToInt32(input);
+                    if (numInput > 2 || numInput < 1)
                     {
                         Console.WriteLine("Invalid input! Please try another number.");
                         continue;
@@ -110,7 +108,7 @@ namespace FinalProject
                     continue;
                 }
             }
-			return actionInput;
+			return numInput;
         }
 
 		public OrderStatus getOrderStatus(SandwichMachineIF machine)
@@ -123,8 +121,8 @@ namespace FinalProject
                 try
                 {
                     input = Console.ReadLine();
-                    orderNumInput = Convert.ToInt32(input);
-					stat = machine.getOrderStatus(orderNumInput);
+					numInput = Convert.ToInt32(input);
+					stat = machine.getOrderStatus(numInput);
 
                     if (stat.Equals(OrderStatus.Invalid_Order))
 					{
@@ -167,7 +165,7 @@ namespace FinalProject
 
 		public Order PickupOrder(bool b, SandwichMachineIF machine)
 		{
-            Order o = machine.PickupOrder(orderNumInput);
+            Order o = machine.PickupOrder(numInput);
             return o;
 		}
 		

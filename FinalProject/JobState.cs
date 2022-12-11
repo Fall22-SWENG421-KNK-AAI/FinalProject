@@ -8,12 +8,12 @@
  */
 public abstract class JobState
 {
-    public const int idleEvent = 1;
-    public const int placingIngredientsEvent = 2;
-    public const int toastingEvent = 3;
-    public const int wrappingEvent = 4;
-    public const int sandwichCompletedEvent = 5;
-    public const int machineErrorEvent = 6;
+    protected const int idleEvent = 1;
+	protected const int placingIngredientsEvent = 2;
+	protected const int toastingEvent = 3;
+	protected const int wrappingEvent = 4;
+	protected const int sandwichCompletedEvent = 5;
+	protected const int machineErrorEvent = 6;
 
     protected SandwichEnvIF context;
 

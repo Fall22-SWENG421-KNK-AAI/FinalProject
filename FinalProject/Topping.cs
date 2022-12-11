@@ -26,4 +26,9 @@ public abstract class Topping
 	{
 		return price;
 	}
+
+	public string getName()
+	{
+		return name;
+	}
 }

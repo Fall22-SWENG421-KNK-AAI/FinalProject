@@ -13,7 +13,7 @@ public class SandwichEnv : SandwichEnvIF
     private JobState state;
     private SandwichMachineIF machine;
     private AbstractSandwich sandwich;
-    int milliSecInSec = 1000;
+    private const int milliSecInSec = 1000;
 
     public SandwichEnv(SandwichMachineIF machine)
     {

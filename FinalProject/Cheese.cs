@@ -26,4 +26,9 @@ public abstract class Cheese
     {
         return price;
     }
+
+    public string getName()
+    {
+        return name;
+    }
 }

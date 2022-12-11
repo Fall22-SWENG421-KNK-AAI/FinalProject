@@ -26,4 +26,9 @@ public abstract class Protein
     {
         return price;
     }
+
+    public string getName()
+    {
+        return name;
+    }
 }
