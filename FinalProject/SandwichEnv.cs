@@ -5,7 +5,8 @@ public class SandwichEnv : SandwichEnvIF
 {
     private JobState state;
     private SandwichMachineIF machine;
-    private AbstractSandwich sandwich; // how to get current sandwich into variable?
+    private AbstractSandwich sandwich;
+    int milliSecInSec = 1000;
 
     public SandwichEnv(SandwichMachineIF machine)
     {
@@ -31,7 +32,8 @@ public class SandwichEnv : SandwichEnvIF
 		changeTo(state.processEvent(2));
         
 		bread.addBread();
-        sandwich.setBread(bread);
+		Thread.Sleep(milliSecInSec * 3);
+		sandwich.setBread(bread);
     }
 
     public void placeCheese(Cheese type, int slices)
@@ -39,6 +41,7 @@ public class SandwichEnv : SandwichEnvIF
 		for (int i = 0; i < slices; i++)
 		{
 			type.addCheese();
+            Thread.Sleep(milliSecInSec * 1);
             sandwich.addCheese(type);
 		}
     }
@@ -47,7 +50,8 @@ public class SandwichEnv : SandwichEnvIF
         for (int i = 0; i < pieces; i++)
         {
             type.addProtein();
-            sandwich.addProtein(type);
+			Thread.Sleep(milliSecInSec * 1);
+			sandwich.addProtein(type);
         }
     }
     public void addToppings(Topping[] t)
@@ -55,6 +59,7 @@ public class SandwichEnv : SandwichEnvIF
 		foreach (Topping top in t)
 		{
             top.addTopping();
+			Thread.Sleep(milliSecInSec / 2);
 			sandwich.addTopping(top);
 		}
     }
@@ -83,13 +88,15 @@ public class SandwichEnv : SandwichEnvIF
     {
         // Wrap next
         changeTo(state.processEvent(4));
-        Log.Information("Toasting sandwich {sec}", sec);
+		Thread.Sleep(milliSecInSec * sec);
+		Log.Information("Toasting sandwich {sec}", sec);
     }   
     public void wrapSandwich() 
     {
+		Thread.Sleep(milliSecInSec * 4);
 		// Go to order complete
 		changeTo(state.processEvent(5));
-        Log.Information("Wrapping sandwich...");
+		Log.Information("Wrapping sandwich...");
     }
     public JobState getJobState()
     {
