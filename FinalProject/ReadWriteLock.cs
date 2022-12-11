@@ -1,4 +1,12 @@
-﻿using System.Runtime.CompilerServices;
+﻿/**
+ * This class is a locking class that utilizes the Read/Write Lock
+ * design pattern to lock the various functions of the SandwichMachine class.
+ * 
+ * @author Anthony Immekus, Keian Kaserman, and Kien Nguyen​
+ * @date 12/11/2022
+ * @version 1.0
+ */
+using System.Runtime.CompilerServices;
 using System.Threading;
 using Serilog;
 public class ReadWriteLock

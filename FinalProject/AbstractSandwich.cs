@@ -1,4 +1,12 @@
-﻿using FinalProject;
+﻿/**
+ * This abstract class acts as the superclass to the VeggieDelight, MeatLovers,
+ * TheClassic, PlainSpicy and ForVegans classes.
+ * 
+ * @author Anthony Immekus, Keian Kaserman, and Kien Nguyen​
+ * @date 12/11/2022
+ * @version 1.0
+ */
+using FinalProject;
 using System.Runtime.CompilerServices;
 
 namespace FinalProject

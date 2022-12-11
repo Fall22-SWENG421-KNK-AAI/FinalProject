@@ -1,4 +1,11 @@
-﻿using System.Text.RegularExpressions;
+﻿/**
+ * This class represents the user interface of the sandwich machine.
+ * 
+ * @author Anthony Immekus, Keian Kaserman, and Kien Nguyen​
+ * @date 12/11/2022
+ * @version 1.0
+ */
+using System.Text.RegularExpressions;
 namespace FinalProject
 {
 	public class UI
@@ -119,7 +126,7 @@ namespace FinalProject
                     orderNumInput = Convert.ToInt32(input);
 					stat = machine.getOrderStatus(orderNumInput);
 
-                    if (stat.Equals(OrderStatus.InvalidOrder))
+                    if (stat.Equals(OrderStatus.Invalid_Order))
 					{
                         Console.WriteLine($"{stat} Please try a different order number.");
                         continue;
@@ -130,7 +137,7 @@ namespace FinalProject
                 {
                     if (input.Equals("b"))
 					{
-						return OrderStatus.InvalidOrder;
+						return OrderStatus.Invalid_Order;
 					}
 					Console.WriteLine("Invalid input! Please enter the correct input.");
                     continue;

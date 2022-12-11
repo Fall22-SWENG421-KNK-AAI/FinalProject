@@ -1,4 +1,12 @@
-﻿using FinalProject;
+﻿/**
+ * This class represents a machine designed to automatically make sandwiches
+ * based on the orders of a customer.
+ * 
+ * @author Anthony Immekus, Keian Kaserman, and Kien Nguyen​
+ * @date 12/11/2022
+ * @version 1.0
+ */
+using FinalProject;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Serilog;
@@ -84,7 +92,7 @@ class SandwichMachine : SandwichMachineIF
                 }
             }
             machineLock.done();
-            return OrderStatus.InvalidOrder;
+            return OrderStatus.Invalid_Order;
 
             /*
             List<Order> orders = createOrderList(order, preparingQueue);
@@ -112,7 +120,7 @@ class SandwichMachine : SandwichMachineIF
         catch (ThreadInterruptedException e)
         {
             Log.Error(e.ToString());
-            return OrderStatus.InvalidOrder;
+            return OrderStatus.Invalid_Order;
         }
 	}
     

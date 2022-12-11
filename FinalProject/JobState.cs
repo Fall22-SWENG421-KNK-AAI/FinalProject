@@ -1,4 +1,12 @@
-﻿public abstract class JobState
+﻿/**
+ * This abstract class acts as the superclass to the Idle, PlacingIngredients,
+ * Toasting, Wrapping, and SandwichCompleted classes.
+ * 
+ * @author Anthony Immekus, Keian Kaserman, and Kien Nguyen​
+ * @date 12/11/2022
+ * @version 1.0
+ */
+public abstract class JobState
 {
     public const int idleEvent = 1;
     public const int placingIngredientsEvent = 2;

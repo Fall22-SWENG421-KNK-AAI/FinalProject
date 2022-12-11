@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+ * This program simulates a sandwich shop machine that makes automated sandwiches.
+ * 
+ * @author Anthony Immekus, Keian Kaserman, and Kien Nguyen​
+ * @date 12/11/2022
+ * @version 1.0
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.PortableExecutable;
@@ -23,6 +30,7 @@ namespace FinalProject
             UI ui = new UI();
 			SandwichMachineIF machine = new SandwichMachine();
 			Choice sandwichChoice;
+
 			// Creates a logging object to be used in application
 			Log.Logger = new LoggerConfiguration()
 				.MinimumLevel.Information()
@@ -56,7 +64,7 @@ namespace FinalProject
 				else if (action == 2) // Check status of order
 				{
 					orderStatus = ui.getOrderStatus(machine);
-					if (!orderStatus.Equals(OrderStatus.InvalidOrder)) // valid order
+					if (!orderStatus.Equals(OrderStatus.Invalid_Order)) // valid order
 					{
 						Console.WriteLine($"\n\tOrder Status: {orderStatus}");
 						if (orderStatus.Equals(OrderStatus.Ready))
@@ -77,7 +85,7 @@ namespace FinalProject
 		// and https://stackoverflow.com/questions/30462079/run-async-method-regularly-with-specified-interval
 		public static async void tryProcessOrder(SandwichMachineIF machine, CancellationToken c = default)
 		{
-			// This causes to run in background
+			// This will cause a series of methods to run in background
 			while (true)
 			{
 				await Task.Run(() => {

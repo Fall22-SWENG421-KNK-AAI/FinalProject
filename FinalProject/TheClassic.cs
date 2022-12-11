@@ -1,4 +1,11 @@
-﻿using FinalProject;
+﻿/**
+ * This class represents the lunch special of the sandwich shop.
+ * 
+ * @author Anthony Immekus, Keian Kaserman, and Kien Nguyen​
+ * @date 12/11/2022
+ * @version 1.0
+ */
+using FinalProject;
 
 class TheClassic : AbstractSandwich
 {
