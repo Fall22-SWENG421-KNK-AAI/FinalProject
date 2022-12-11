@@ -4,7 +4,7 @@ SandwichShop
 
 ### TODO
 - [X] Implement Factory Method pattern
-- [ ] Implement Dynamic Linkage pattern
+- [X] Implement Dynamic Linkage pattern
 - [X] Implmenent State pattern
-- [ ] Implement Read-Write Lock pattern
-- [ ] Implement Composite pattern
+- [X] Implement Read-Write Lock pattern
+- [X] Implement Composite pattern
