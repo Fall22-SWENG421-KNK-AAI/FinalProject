@@ -66,7 +66,7 @@ namespace FinalProject
 			while (true)
 			{
 				Console.WriteLine($"Would you like to add more sandwiches to your order? (Y|N)");
-				input = Console.ReadLine();
+				input = Console.ReadLine().ToUpper();
 
 				switch (input)
 				{
@@ -143,7 +143,7 @@ namespace FinalProject
 			Console.WriteLine("Would you like to pickup your order now? (Y|N)");
 			while (true)
 			{
-				input = Console.ReadLine();
+				input = Console.ReadLine().ToUpper();
 
 				switch (input)
 				{
