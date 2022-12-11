@@ -62,15 +62,12 @@ class SandwichMachine : SandwichMachineIF
         try
         {
             machineLock.readLock();
-            //string status;
-            //Order currentOrder;
 
             // Find sandwich
             if (pickupList.ContainsKey(orderNum)) // Finished.
             {
                 machineLock.done();
                 return OrderStatus.Ready;
-                // currentOrder = pickupList[orderNum];
             } else if (preparingQueue.Count > 0) { // Being made.
                 foreach (Order o in preparingQueue)
                 {
@@ -93,29 +90,6 @@ class SandwichMachine : SandwichMachineIF
             }
             machineLock.done();
             return OrderStatus.Invalid_Order;
-
-            /*
-            List<Order> orders = createOrderList(order, preparingQueue);
-            int orderIndex = orders.IndexOf(order);
-            currentOrder = orders[orderIndex];
-            // currentOrder = order;
-            }
-
-            /*
-            List<AbstractSandwich> sandwiches = currentOrder.getSandwiches();
-            string status;
-
-			for (int i = 0; i < sandwiches.Count; i++)
-            {
-				status = sandwiches[i].getSandwichEnv().getJobState();
-                if (!type(status).IsInstanceOfType(SandwichCompleted))
-                {
-                    machineLock.done();
-                    return status.ToString();
-                }
-			}
-			machineLock.done();
-            */
         }
         catch (ThreadInterruptedException e)
         {
@@ -170,12 +144,11 @@ class SandwichMachine : SandwichMachineIF
 
 			await foreach (bool orderStarted in beginProcessingOrder(order));
 		}
-        //throw new MachineException("No processing areas free.");
     }
 
-    // This will run to start the processing of an order
-    // When it finishes processing one sandwich it will
-    // move onto the next one in the same order and process it.
+    // This will run to start the processing of an order.
+    // When it finishes processing one sandwich, it will
+    // move onto the next one in the same order and process that one.
     // That's what the yield return is for.
     private async IAsyncEnumerable<bool> beginProcessingOrder(Order o)
     {
@@ -191,27 +164,17 @@ class SandwichMachine : SandwichMachineIF
         CompleteOrder(o);
     }
 
-    // This processes an individual sandwich asynchronously so we can use UI at same time.
+    // This processes an individual sandwich asynchronously, so we can use UI at same time.
 	private async Task<bool> startProcessingSandwich(AbstractSandwich sandwich)
 	{
         return await Task.Run(() =>
         {
-			//machineLock.writeLock();
 			var env = getFreeProcessingArea();
 			sandwich.setEnvironment(env);
-			//machineLock.done();
 			sandwich.start();
 			return true;
 		});
 	}
-
-    /*
-	private List<Order> createOrderList(Order order, List<Order> q)
-    {
-		List<Order> orders = q.ToArray().ToList();
-        return orders;
-	}
-    */
 
     public void CompleteOrder(Order order)
     {
