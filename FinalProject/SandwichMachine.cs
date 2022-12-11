@@ -49,7 +49,7 @@ class SandwichMachine : SandwichMachineIF
         return env;
     }
 
-	public string getOrderStatus(int orderNum)
+	public OrderStatus getOrderStatus(int orderNum)
 	{
         try
         {
@@ -61,7 +61,7 @@ class SandwichMachine : SandwichMachineIF
             if (pickupList.ContainsKey(orderNum)) // Finished.
             {
                 machineLock.done();
-                return $"Order #{orderNum} Ready";
+                return OrderStatus.Ready;
                 // currentOrder = pickupList[orderNum];
             } else if (preparingQueue.Count > 0) { // Being made.
                 foreach (Order o in preparingQueue)
@@ -69,7 +69,7 @@ class SandwichMachine : SandwichMachineIF
                     if (orderNum == o.getOrderNumber())
                     {
                         machineLock.done();
-                        return $"Preparing order #{orderNum}";
+                        return OrderStatus.Preparing;
                     }
                 }
             } else if (customerQueue.Count > 0)
@@ -79,12 +79,12 @@ class SandwichMachine : SandwichMachineIF
                     if (orderNum == o.getOrderNumber())
                     {
                         machineLock.done();
-                        return $"Order #{orderNum} not yet started";
+                        return OrderStatus.Waiting;
                     }
                 }
             }
             machineLock.done();
-            return "Order does not exist.";
+            return OrderStatus.InvalidOrder;
 
             /*
             List<Order> orders = createOrderList(order, preparingQueue);
@@ -112,7 +112,7 @@ class SandwichMachine : SandwichMachineIF
         catch (ThreadInterruptedException e)
         {
             Log.Error(e.ToString());
-            return "";
+            return OrderStatus.InvalidOrder;
         }
 	}
     

@@ -8,7 +8,7 @@ class MeatLovers : AbstractSandwich
         name = "Meat Lovers";
         price = 8.99;
         description = "A delicious sandwich with roastbeef, turkey, veggie patty, and cheese.";
-        totalRuntime = 8 * secsInMin;
+        toastTime = 60;
         needsToasting = true;
     }
 
@@ -21,7 +21,7 @@ class MeatLovers : AbstractSandwich
         getSandwichEnv().placeProtein(new Turkey(), 1);
         getSandwichEnv().placeProtein(new VeggiePatty(), 1);
         getSandwichEnv().endPlacingIngredients();
-        getSandwichEnv().toastSandwich(totalRuntime);
+        getSandwichEnv().toastSandwich(toastTime);
         getSandwichEnv().wrapSandwich();
     }
 }

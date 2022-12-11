@@ -87,17 +87,17 @@ public class SandwichEnv : SandwichEnvIF
     public void toastSandwich(int sec)
     {
         // Wrap next
-        changeTo(state.processEvent(4));
+		Log.Information("Toasting sandwich for {sec} seconds.", sec);
 		Thread.Sleep(milliSecInSec * sec);
-		Log.Information("Toasting sandwich {sec}", sec);
-    }   
+		changeTo(state.processEvent(4));
+	}   
     public void wrapSandwich() 
     {
-		Thread.Sleep(milliSecInSec * 4);
 		// Go to order complete
-		changeTo(state.processEvent(5));
+		Thread.Sleep(milliSecInSec * 4);
 		Log.Information("Wrapping sandwich...");
-    }
+		changeTo(state.processEvent(5));
+	}
     public JobState getJobState()
     {
         return state;

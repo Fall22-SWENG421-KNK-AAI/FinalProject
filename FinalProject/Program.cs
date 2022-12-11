@@ -19,7 +19,7 @@ namespace FinalProject
 		public static void Main(string[] args)
         {
 			int customerCount = 1;
-			string orderStatus;
+			OrderStatus orderStatus;
             UI ui = new UI();
 			SandwichMachineIF machine = new SandwichMachine();
 			Choice sandwichChoice;
@@ -57,14 +57,17 @@ namespace FinalProject
 				else if (action == 2)
 				{
 					orderStatus = ui.getOrderStatus(machine);
-					if (!orderStatus.Equals("")) // valid order
+					if (!orderStatus.Equals(OrderStatus.InvalidOrder)) // valid order
 					{
 						Console.WriteLine(orderStatus);
-						bool wantPickup = ui.PromptPickup();
-						if (wantPickup)
+						if (orderStatus.Equals(OrderStatus.Ready))
 						{
-							Order readyOrder = ui.PickupOrder(wantPickup, machine);
-							ui.PrintReceipt(readyOrder);
+							bool wantPickup = ui.PromptPickup();
+							if (wantPickup)
+							{
+								Order readyOrder = ui.PickupOrder(wantPickup, machine);
+								ui.PrintReceipt(readyOrder);
+							}
 						}
                     }
 				}

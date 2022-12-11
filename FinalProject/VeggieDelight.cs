@@ -8,7 +8,7 @@ public class VeggieDelight : AbstractSandwich
         name = "Veggie Delight";
         price = 5.99;
         description = "A delicious sandwich with lettuce, tomato, pickle, and cheese.";
-        totalRuntime = 5 * secsInMin;
+        toastTime = 0;
 		needsToasting = false;
 	}
 
@@ -24,7 +24,7 @@ public class VeggieDelight : AbstractSandwich
             new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle() };
         getSandwichEnv().addToppings(toppings);
         getSandwichEnv().endPlacingIngredients();
-        getSandwichEnv().toastSandwich(totalRuntime);
+        getSandwichEnv().toastSandwich(toastTime);
         getSandwichEnv().wrapSandwich();
     }
 

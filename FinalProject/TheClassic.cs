@@ -8,7 +8,7 @@ class TheClassic : AbstractSandwich
         name = "The Classic";
         price = 6.99;
         description = "A delicious sandwich with roastbeef, turkey, and cheese.";
-        totalRuntime = 6 * secsInMin;
+        toastTime = 45;
         needsToasting = true;
     }
 
@@ -26,7 +26,7 @@ class TheClassic : AbstractSandwich
         };
         getSandwichEnv().addToppings(toppings);
         getSandwichEnv().endPlacingIngredients();
-        getSandwichEnv().toastSandwich(180);
+        getSandwichEnv().toastSandwich(toastTime);
         getSandwichEnv().wrapSandwich();
     }
 }

@@ -9,7 +9,7 @@ class ForVegans : AbstractSandwich
         name = "For Vegans";
         price = 4.99;
         description = "A delicious sandwich with lettuce, tomato, pickle.";
-        totalRuntime = 4 * secsInMin;
+        toastTime = 0;
         needsToasting = false;
     }
 
@@ -25,7 +25,7 @@ class ForVegans : AbstractSandwich
             new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle(), new Pickle()};
         getSandwichEnv().addToppings(toppings);
         getSandwichEnv().endPlacingIngredients();
-        getSandwichEnv().toastSandwich(180);
+        getSandwichEnv().toastSandwich(toastTime);
         getSandwichEnv().wrapSandwich();
     }
 

@@ -7,7 +7,7 @@ namespace FinalProject
     {
         private SandwichEnvIF env;
 
-		protected int totalRuntime;
+		protected int toastTime;
         protected bool needsToasting;
         protected Topping[] toppings = new Topping[] { };
         protected Bread bread;
@@ -16,7 +16,6 @@ namespace FinalProject
         public string name;
         public string description;
         public double price;
-        protected const int secsInMin = 60;
 
 		public abstract void start();
 

@@ -106,9 +106,9 @@ namespace FinalProject
 			return actionInput;
         }
 
-		public string getOrderStatus(SandwichMachineIF machine)
+		public OrderStatus getOrderStatus(SandwichMachineIF machine)
 		{
-			string str;
+			OrderStatus stat;
 
             Console.WriteLine("Enter your order number (Enter b to exit):");
             while (true)
@@ -117,25 +117,20 @@ namespace FinalProject
                 {
                     input = Console.ReadLine();
                     orderNumInput = Convert.ToInt32(input);
-                    if (orderNumInput < 1)
-                    {
-                        Console.WriteLine("Invalid input! Please try another number.");
-                        continue;
-                    }
-					str = machine.getOrderStatus(orderNumInput);
+					stat = machine.getOrderStatus(orderNumInput);
 
-                    if (str.Equals("Order does not exist."))
+                    if (stat.Equals(OrderStatus.InvalidOrder))
 					{
-                        Console.WriteLine($"{str} Please try a different order number.");
+                        Console.WriteLine($"{stat} Please try a different order number.");
                         continue;
                     }
-                    return str;
+                    return stat;
                 }
                 catch
                 {
                     if (input.Equals("b"))
 					{
-						return "";
+						return OrderStatus.InvalidOrder;
 					}
 					Console.WriteLine("Invalid input! Please enter the correct input.");
                     continue;

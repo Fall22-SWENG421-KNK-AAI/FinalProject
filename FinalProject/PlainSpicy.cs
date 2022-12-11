@@ -8,7 +8,7 @@ class PlainSpicy : AbstractSandwich
         name = "Plain Spicy";
         price = 7.99;
         description = "A delicious sandwich with turkey, sriracha, hot pepper, and cheese.";
-        totalRuntime = 5 * secsInMin;
+        toastTime = 45;
         needsToasting = true;
     }
 
@@ -23,7 +23,7 @@ class PlainSpicy : AbstractSandwich
             new HotPepper(), new HotPepper(), new HotPepper() };
         getSandwichEnv().addToppings(toppings);
         getSandwichEnv().endPlacingIngredients();
-        getSandwichEnv().toastSandwich(180);
+        getSandwichEnv().toastSandwich(toastTime);
         getSandwichEnv().wrapSandwich();
     }
 }
