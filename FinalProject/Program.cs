@@ -37,11 +37,10 @@ namespace FinalProject
 			while (true)
 			{
 				int action = ui.AskActionToTake();
-                if (action == 1)
+                if (action == 1) // Take new Order
 				{
                     Order order = new Order();
 
-                    Console.WriteLine("May we take your order, Customer #" + customerCount + "?");
                     sandwichChoice = ui.DisplayMenu();
                     order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
 
@@ -50,16 +49,16 @@ namespace FinalProject
                         sandwichChoice = ui.DisplayMenu();
                         order = machine.AddSandwichToOrder(sandwichChoice.ToString(), order);
                     }
-
+					Console.WriteLine($"Your order number is {order.getOrderNumber()}");
                     machine.PlaceOrder(order);
                     customerCount++;
                 }
-				else if (action == 2)
+				else if (action == 2) // Check status of order
 				{
 					orderStatus = ui.getOrderStatus(machine);
 					if (!orderStatus.Equals(OrderStatus.InvalidOrder)) // valid order
 					{
-						Console.WriteLine(orderStatus);
+						Console.WriteLine($"\n\tOrder Status: {orderStatus}");
 						if (orderStatus.Equals(OrderStatus.Ready))
 						{
 							bool wantPickup = ui.PromptPickup();

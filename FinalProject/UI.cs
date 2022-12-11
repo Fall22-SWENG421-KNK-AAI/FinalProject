@@ -31,7 +31,7 @@ namespace FinalProject
 
 		public Choice DisplayMenu()
 		{
-            Console.WriteLine("What kind of Sandwhich would you like?");
+            Console.WriteLine("\nWhat kind of Sandwhich would you like?");
 			for (int i = 0; i < sandwichList.Length; i++)
 			{
 				Console.WriteLine(i + 1 + " " + displayList[i]);
@@ -83,7 +83,7 @@ namespace FinalProject
 
 		public int AskActionToTake()
 		{
-            Console.WriteLine("Do you want to (1) make an order or (2) check your sandwich status?\nPlease select a number:");
+            Console.WriteLine("\nWould you like to\n\t1) make an order or\n\t2) check your sandwich status?\nPlease select a number:");
             while (true)
             {
                 try
@@ -110,7 +110,7 @@ namespace FinalProject
 		{
 			OrderStatus stat;
 
-            Console.WriteLine("Enter your order number (Enter b to exit):");
+            Console.WriteLine("\nEnter your order number (Enter b to exit):");
             while (true)
             {
                 try
@@ -172,7 +172,7 @@ namespace FinalProject
 				Console.WriteLine(s);
 				total += s.getPrice();
 			}
-			Console.WriteLine($"\tTotal Price ${total}");
+			Console.WriteLine($"\tTotal Price: ${total}\n");
 		}
     }
 }
